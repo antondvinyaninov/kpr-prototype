@@ -315,6 +315,11 @@
   .video-side h3{margin:8px 0 10px;font-size:21px;line-height:1.25;letter-spacing:-.02em;font-weight:600}
   .video-side p{margin:0 0 16px;color:var(--muted);font-size:14.5px;line-height:1.5}
   .video-side .src{display:block;margin-top:10px;font-size:12.5px;color:var(--muted-2)}
+  .video-list{list-style:none;margin:10px 0 0;padding:0}
+  .video-list li{position:relative;padding:9px 0 9px 16px;font-size:14.5px;line-height:1.4;color:#3b4252;border-top:1px solid #f0f1f5}
+  .video-list li:first-child{border-top:0;padding-top:0}
+  .video-list li::before{content:"";position:absolute;left:0;top:16px;width:5px;height:5px;border-radius:50%;background:var(--accent)}
+  .video-list li:first-child::before{top:7px}
 
   /* справочник */
   .quick{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
@@ -798,9 +803,9 @@
     <div class="sec-head">
       <div>
         <h2>Видео</h2>
-        <div class="sub">Официальная хроника города на VK Видео</div>
+        <div class="sub">Городская хроника</div>
       </div>
-      <a class="more" href="https://vkvideo.ru/video-126387664_456245631" target="_blank" rel="noopener">Все видео в VK →</a>
+      <a class="more" href="#">Все выпуски →</a>
     </div>
     <div class="video">
       <div class="video-frame">
@@ -809,11 +814,13 @@
           allow="autoplay; encrypted-media; fullscreen; picture-in-picture"></iframe>
       </div>
       <div class="video-side">
-        <span class="rub">Видео недели</span>
-        <h3>Городская хроника: что происходит в Сарапуле</h3>
-        <p>Администрация публикует официальные записи о событиях, стройках и работе городских служб. Видео открывается и на сайте, и в VK Видео.</p>
-        <a class="btn" href="https://vkvideo.ru/video-126387664_456245631" target="_blank" rel="noopener">Смотреть в VK Видео</a>
-        <span class="src">Источник: официальное сообщество города</span>
+        <span class="rub">Сегодня в выпуске</span>
+        <ul class="video-list">
+          <li>Ремонт моста через Каму: что меняется для водителей</li>
+          <li>Отопительный сезон: куда обращаться, если батареи холодные</li>
+          <li>Прямая линия главы: больше 2 000 вопросов от жителей</li>
+        </ul>
+        <span class="src">Выпуск за 21 ноября</span>
       </div>
     </div>
   </section>
