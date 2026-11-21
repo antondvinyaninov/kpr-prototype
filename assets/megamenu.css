@@ -52,3 +52,8 @@
 }
 .mega-promo--red{background:#c8432f}
 .mega-promo--red .ico{color:#c8432f}
+
+/* интересно */
+.mega-panel--2{grid-template-columns:1fr 340px}
+.mega-promo--green{background:#4f7a3f}
+.mega-promo--green .ico{color:#4f7a3f}
