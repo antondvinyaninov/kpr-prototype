@@ -1,12 +1,12 @@
 /* Мобильное меню (бургер) */
 
-.mmenu{position:fixed;inset:0;z-index:90;display:flex;justify-content:flex-end}
+.mmenu{position:fixed;inset:0;z-index:90;display:flex;justify-content:flex-start}
 .mmenu[hidden]{display:none}
 
 .mmenu-backdrop{position:absolute;inset:0;background:rgba(12,16,24,.45);animation:mmenu-fade .18s ease}
 .mmenu-panel{
   position:relative;width:min(360px,88vw);height:100%;background:#fff;padding:16px 20px 26px;
-  display:flex;flex-direction:column;overflow:auto;box-shadow:-16px 0 44px rgba(20,25,40,.2);
+  display:flex;flex-direction:column;overflow:auto;box-shadow:16px 0 44px rgba(20,25,40,.2);
   animation:mmenu-slide .22s ease
 }
 .mmenu-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}

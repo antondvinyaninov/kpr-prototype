@@ -75,10 +75,16 @@
 
   function close() {
     wrap.hidden = true;
-    burger.setAttribute('aria-expanded', 'false');
+    var nav = burger.closest('.nav, .hrow');
+  if (nav && nav.firstElementChild !== burger) nav.insertBefore(burger, nav.firstElementChild);
+
+  burger.setAttribute('aria-expanded', 'false');
     document.body.classList.remove('mmenu-open');
     burger.focus();
   }
+
+  var nav = burger.closest('.nav, .hrow');
+  if (nav && nav.firstElementChild !== burger) nav.insertBefore(burger, nav.firstElementChild);
 
   burger.setAttribute('aria-expanded', 'false');
   burger.setAttribute('aria-controls', 'mmenu');

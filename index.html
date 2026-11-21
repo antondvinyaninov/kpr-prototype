@@ -107,7 +107,10 @@
   .burger{display:none}
   @media(max-width:1080px){
     .menu{display:none}
-    .nav{grid-template-columns:1fr auto}
+    .nav{grid-template-columns:1fr auto 1fr;gap:12px}
+    .logo{justify-self:center}
+    .burger{justify-self:start}
+    .nav-actions{justify-self:end}
     .burger{display:grid}
   }
 
@@ -384,7 +387,7 @@
 <link rel="stylesheet" href="assets/megamenu.css?v=9">
 <link rel="stylesheet" href="assets/footer.css?v=1">
 <link rel="stylesheet" href="assets/logo-effects.css?v=6">
-<link rel="stylesheet" href="assets/mobile-menu.css?v=2">
+<link rel="stylesheet" href="assets/mobile-menu.css?v=3">
 </head>
 <body>
 
@@ -1000,6 +1003,6 @@
 <script src="assets/megamenu.js?v=3"></script>
 <script src="assets/footer.js?v=1"></script>
 <script src="assets/logo-effects.js?v=3"></script>
-<script src="assets/mobile-menu.js?v=1"></script>
+<script src="assets/mobile-menu.js?v=2"></script>
 </body>
 </html>
