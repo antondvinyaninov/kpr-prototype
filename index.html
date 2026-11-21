@@ -218,6 +218,22 @@
   .read a:hover b{color:var(--accent)}
   .read .meta{display:block;font-size:12px;color:var(--muted-2);margin-top:3px}
 
+  /* рекламные места */
+  .ad{display:flex;align-items:center;gap:18px;border:1px dashed #d3cfc2;border-radius:20px;
+    background:#fbfaf5;padding:18px 22px;transition:border-color .18s,background .18s}
+  .ad:hover{border-color:var(--accent);background:#fdfaf6}
+  .ad .ad-tag{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted-2);white-space:nowrap}
+  .ad b{display:block;font-size:17px;font-weight:600;letter-spacing:-.01em}
+  .ad small{display:block;font-size:12.5px;color:var(--muted);margin-top:3px}
+  .ad .ad-cta{margin-left:auto;font-size:13.5px;font-weight:500;color:var(--accent);white-space:nowrap}
+  .ad-lead{min-height:112px}
+  .ad-wide{min-height:128px}
+  @media(max-width:640px){
+    .ad{flex-wrap:wrap;gap:10px;padding:16px 18px}
+    .ad .ad-cta{margin-left:0}
+    .ad b{font-size:16px}
+  }
+
   /* новости компаний */
   .clist{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
   @media(max-width:900px){.clist{grid-template-columns:1fr}}
@@ -433,6 +449,18 @@
     
   </div>
 
+  <!-- реклама: лидборд -->
+  <section class="wrap">
+    <a class="ad ad-lead" href="#">
+      <span class="ad-tag">Реклама</span>
+      <span>
+        <b>Здесь могла быть ваша реклама</b>
+        <small>Баннер во всю ширину · 1280×120</small>
+      </span>
+      <span class="ad-cta">Разместить →</span>
+    </a>
+  </section>
+
   <!-- лента -->
   <section class="wrap">
     <div class="sec-head">
@@ -496,6 +524,18 @@
       </a>
 
     </div>
+  </section>
+
+  <!-- реклама: в ленте -->
+  <section class="wrap">
+    <a class="ad ad-wide" href="#">
+      <span class="ad-tag">Реклама</span>
+      <span>
+        <b>Здесь могла быть ваша реклама</b>
+        <small>Нативный блок между новостями · 1280×128</small>
+      </span>
+      <span class="ad-cta">Разместить →</span>
+    </a>
   </section>
 
   <!-- добрые новости -->
@@ -774,6 +814,18 @@
         <a class="poll-report" href="#">Заметили ошибку? Сообщите нам</a>
       </div>
     </div>
+  </section>
+
+  <!-- реклама: над подвалом -->
+  <section class="wrap">
+    <a class="ad ad-wide" href="#">
+      <span class="ad-tag">Реклама</span>
+      <span>
+        <b>Здесь могла быть ваша реклама</b>
+        <small>Баннер над подвалом · 1280×128</small>
+      </span>
+      <span class="ad-cta">Разместить →</span>
+    </a>
   </section>
 
 </main>

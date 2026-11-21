@@ -135,6 +135,15 @@
 
   .note{margin:22px 0 0;font-size:12.5px;color:var(--muted-2);max-width:80ch}
 
+  .ad{display:flex;align-items:center;gap:18px;border:1px dashed #d3cfc2;border-radius:var(--r);
+    background:#fbfaf5;padding:18px 22px;min-height:112px;margin-top:26px}
+  .ad:hover{border-color:var(--accent);background:#fdfaf6}
+  .ad .ad-tag{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted-2);white-space:nowrap}
+  .ad b{display:block;font-size:17px;font-weight:600;letter-spacing:-.01em}
+  .ad small{display:block;font-size:12.5px;color:var(--muted);margin-top:3px}
+  .ad .ad-cta{margin-left:auto;font-size:13.5px;font-weight:500;color:var(--accent);white-space:nowrap}
+  @media(max-width:640px){.ad{flex-wrap:wrap;gap:10px}.ad .ad-cta{margin-left:0}.ad b{font-size:16px}}
+
   footer{margin-top:40px;background:#fff;border-top:1px solid var(--line);padding:28px 0}
   .frow{display:flex;gap:18px;flex-wrap:wrap;font-size:13.5px;color:var(--muted)}
   .frow a:hover{color:var(--accent)}
@@ -290,6 +299,15 @@
   </div>
 
   <p class="note">Названия, адреса, рейтинги и отзывы в этом макете демонстрационные: на реальном сайте отзывы приходят от читателей с модерацией, а карточки компаний заводят через личный кабинет или редакцию.</p>
+  <a class="ad" href="#">
+    <span class="ad-tag">Реклама</span>
+    <span>
+      <b>Здесь могла быть ваша реклама</b>
+      <small>Баннер в разделе · 1280×120</small>
+    </span>
+    <span class="ad-cta">Разместить →</span>
+  </a>
+
 </main>
 
 <footer>
