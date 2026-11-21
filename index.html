@@ -341,7 +341,8 @@
   .bigcard{position:relative}
   .bigcard>.big-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
   .bigcard>:not(.big-img){position:relative;z-index:2}
-  .ncard .ph img,.ev .ph img{width:100%;height:100%;object-fit:cover;display:block}
+  .ncard .ph,.ev .ph{position:relative;overflow:hidden}
+  .ncard .ph img,.ev .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 </style>
 </head>
 <body>
