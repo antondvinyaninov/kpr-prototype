@@ -227,6 +227,21 @@
   .ad small{display:block;font-size:12.5px;color:var(--muted);margin-top:3px}
   .ad .ad-cta{margin-left:auto;font-size:13.5px;font-weight:500;color:var(--accent);white-space:nowrap}
   .ad-lead{min-height:112px}
+  .ad-card{background:#fbfaf5;border:1px dashed #d3cfc2}
+  .ad-card:hover{border-color:var(--accent)}
+  .ad-card .ad-big{font-size:21px;line-height:1.2;font-weight:600;letter-spacing:-.02em;margin:10px 0 8px}
+  .ad-card .ad-note{margin:0 0 16px;font-size:13.5px;line-height:1.45;color:var(--muted)}
+  .ad-card .ad-cta{margin-top:auto;color:var(--accent);font-size:14px;font-weight:500}
+  .ad-sticky{position:fixed;left:0;right:0;bottom:0;z-index:55;background:#fff;border-top:1px solid var(--edge);
+    box-shadow:0 -6px 24px rgba(20,25,40,.08);padding:10px 0}
+  .ad-sticky .wrap{display:flex;align-items:center;gap:16px}
+  .ad-sticky b{font-size:15px;font-weight:600;letter-spacing:-.01em}
+  .ad-sticky small{font-size:12.5px;color:var(--muted)}
+  .ad-sticky .ad-cta{margin-left:auto;font-size:13.5px;font-weight:500;color:var(--accent);white-space:nowrap}
+  .ad-close{border:0;background:none;font-size:20px;line-height:1;color:var(--muted-2);cursor:pointer;padding:4px 6px}
+  .ad-close:hover{color:var(--accent)}
+  @media(max-width:640px){.ad-sticky small{display:none}.ad-sticky b{font-size:14px}}
+  body{padding-bottom:64px}
   .ad-wide{min-height:128px}
   @media(max-width:640px){
     .ad{flex-wrap:wrap;gap:10px;padding:16px 18px}
@@ -514,28 +529,16 @@
         </div>
       </a>
 
-      <a class="ncard" href="#">
-        <div class="ph v2"><img src="assets/photos/card-operator.jpg" alt=""></div>
+      <a class="ncard ad-card" href="#">
         <div class="body">
-          <span class="rub">Общество</span>
-          <h3>Жители Удмуртии задали более 2 000 вопросов на прямой линии</h3>
-          <div class="meta"><span>17 ноября, 12:45</span><span class="eye">986</span></div>
+          <span class="rub">Реклама</span>
+          <div class="ad-big">Здесь могла быть ваша реклама</div>
+          <p class="ad-note">Карточка в ленте · встаёт на место новости, не ломая сетку</p>
+          <span class="ad-cta">Разместить →</span>
         </div>
       </a>
 
     </div>
-  </section>
-
-  <!-- реклама: в ленте -->
-  <section class="wrap">
-    <a class="ad ad-wide" href="#">
-      <span class="ad-tag">Реклама</span>
-      <span>
-        <b>Здесь могла быть ваша реклама</b>
-        <small>Нативный блок между новостями · 1280×128</small>
-      </span>
-      <span class="ad-cta">Разместить →</span>
-    </a>
   </section>
 
   <!-- добрые новости -->
@@ -897,6 +900,29 @@
       sets[i].hidden = true;
       i = (i + 1) % sets.length;
       sets[i].hidden = false;
+    });
+  })();
+</script>
+
+<!-- реклама: sticky-полоса -->
+<div class="ad-sticky" id="adSticky">
+  <div class="wrap">
+    <span class="ad-tag">Реклама</span>
+    <b>Здесь могла быть ваша реклама</b>
+    <small>Полоса внизу экрана · 970×90</small>
+    <a class="ad-cta" href="#">Разместить →</a>
+    <button class="ad-close" type="button" id="adClose" aria-label="Закрыть рекламу">×</button>
+  </div>
+</div>
+
+<script>
+  (() => {
+    const bar = document.getElementById('adSticky');
+    const btn = document.getElementById('adClose');
+    if (!bar || !btn) return;
+    btn.addEventListener('click', () => {
+      bar.remove();
+      document.body.style.paddingBottom = '0';
     });
   })();
 </script>
