@@ -1,52 +1,59 @@
 (function () {
-  var mega = document.getElementById('mega');
-  if (!mega) return;
-  var trigger = document.getElementById('megaTrigger');
-  var panel = document.getElementById('megaPanel');
-  if (!trigger || !panel) return;
+  var roots = Array.prototype.slice.call(document.querySelectorAll('.mega'));
+  if (!roots.length) return;
 
-  var timer = null;
+  var items = roots.map(function (root) {
+    return {
+      root: root,
+      trigger: root.querySelector('.mega-trigger'),
+      panel: root.querySelector('.mega-panel'),
+      timer: null
+    };
+  }).filter(function (i) { return i.trigger && i.panel; });
 
-  function open() {
-    if (timer) clearTimeout(timer);
-    panel.hidden = false;
-    trigger.setAttribute('aria-expanded', 'true');
+  function open(item) {
+    items.forEach(function (other) { if (other !== item) close(other); });
+    if (item.timer) clearTimeout(item.timer);
+    item.panel.hidden = false;
+    item.trigger.setAttribute('aria-expanded', 'true');
   }
 
-  function close() {
-    if (timer) clearTimeout(timer);
-    panel.hidden = true;
-    trigger.setAttribute('aria-expanded', 'false');
+  function close(item) {
+    if (item.timer) clearTimeout(item.timer);
+    item.panel.hidden = true;
+    item.trigger.setAttribute('aria-expanded', 'false');
   }
 
-  function closeSoon() {
-    if (timer) clearTimeout(timer);
-    timer = setTimeout(close, 140);
+  function closeSoon(item) {
+    if (item.timer) clearTimeout(item.timer);
+    item.timer = setTimeout(function () { close(item); }, 140);
   }
 
-  trigger.addEventListener('click', function (e) {
-    e.stopPropagation();
-    if (panel.hidden) open(); else close();
-  });
-
-  mega.addEventListener('mouseenter', open);
-  mega.addEventListener('mouseleave', closeSoon);
-  panel.addEventListener('mouseenter', open);
-  panel.addEventListener('mouseleave', closeSoon);
-
-  mega.addEventListener('focusin', open);
-  mega.addEventListener('focusout', function (e) {
-    if (!mega.contains(e.relatedTarget) && !panel.contains(e.relatedTarget)) closeSoon();
+  items.forEach(function (item) {
+    item.trigger.addEventListener('click', function (e) {
+      e.stopPropagation();
+      if (item.panel.hidden) open(item); else close(item);
+    });
+    item.root.addEventListener('mouseenter', function () { open(item); });
+    item.root.addEventListener('mouseleave', function () { closeSoon(item); });
+    item.panel.addEventListener('mouseenter', function () { open(item); });
+    item.panel.addEventListener('mouseleave', function () { closeSoon(item); });
+    item.root.addEventListener('focusin', function () { open(item); });
+    item.root.addEventListener('focusout', function (e) {
+      if (!item.root.contains(e.relatedTarget)) closeSoon(item);
+    });
   });
 
   document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && !panel.hidden) {
-      close();
-      trigger.focus();
-    }
+    if (e.key !== 'Escape') return;
+    items.forEach(function (item) {
+      if (!item.panel.hidden) { close(item); item.trigger.focus(); }
+    });
   });
 
   document.addEventListener('click', function (e) {
-    if (!panel.hidden && !panel.contains(e.target) && !mega.contains(e.target)) close();
+    items.forEach(function (item) {
+      if (!item.panel.hidden && !item.root.contains(e.target)) close(item);
+    });
   });
 })();

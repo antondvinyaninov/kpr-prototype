@@ -43,3 +43,12 @@
 .mega-promo:hover b{text-decoration:underline}
 
 @media(max-width:1080px){.mega-panel{display:none !important}}
+
+/* афиша */
+.mega-cap-lg{font-size:19px;font-weight:600;letter-spacing:-.01em;margin-bottom:12px}
+.mega-badge{
+  display:inline-block;margin-left:8px;padding:3px 9px;border-radius:999px;
+  background:#e2ecd9;color:#37622a;font-size:12px;white-space:nowrap
+}
+.mega-promo--red{background:#c8432f}
+.mega-promo--red .ico{color:#c8432f}
