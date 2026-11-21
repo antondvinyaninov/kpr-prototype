@@ -305,6 +305,17 @@
   .person p{margin:9px 0 0;font-size:13.5px;line-height:1.45;color:var(--muted)}
   .person a{display:inline-block;margin-top:9px;font-size:13.5px;color:var(--accent)}
 
+  /* видео */
+  .video{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:20px;align-items:start}
+  @media(max-width:900px){.video{grid-template-columns:1fr}}
+  .video-frame{position:relative;aspect-ratio:16/9;border-radius:var(--r);overflow:hidden;
+    background:#0d1219;border:1px solid var(--edge)}
+  .video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .video-side{background:#fff;border:1px solid var(--edge);border-radius:var(--r);padding:22px 24px}
+  .video-side h3{margin:8px 0 10px;font-size:21px;line-height:1.25;letter-spacing:-.02em;font-weight:600}
+  .video-side p{margin:0 0 16px;color:var(--muted);font-size:14.5px;line-height:1.5}
+  .video-side .src{display:block;margin-top:10px;font-size:12.5px;color:var(--muted-2)}
+
   /* справочник */
   .quick{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
   @media(max-width:900px){.quick{grid-template-columns:1fr 1fr}}
@@ -779,6 +790,31 @@
         <p>Более пяти лет назад предпочёл бизнесу волонтёрство и погрузился в тему ответственного содержания домашних животных.</p>
         <a href="#">Читать интервью · стр. 11</a>
       </aside>
+    </div>
+  </section>
+
+  <!-- видео -->
+  <section class="wrap">
+    <div class="sec-head">
+      <div>
+        <h2>Видео</h2>
+        <div class="sub">Официальная хроника города на VK Видео</div>
+      </div>
+      <a class="more" href="https://vkvideo.ru/video-126387664_456245631" target="_blank" rel="noopener">Все видео в VK →</a>
+    </div>
+    <div class="video">
+      <div class="video-frame">
+        <iframe src="https://vkvideo.ru/video_ext.php?oid=-126387664&id=456245631&hd=2"
+          title="Видео администрации Сарапула" loading="lazy" allowfullscreen
+          allow="autoplay; encrypted-media; fullscreen; picture-in-picture"></iframe>
+      </div>
+      <div class="video-side">
+        <span class="rub">Видео недели</span>
+        <h3>Городская хроника: что происходит в Сарапуле</h3>
+        <p>Администрация публикует официальные записи о событиях, стройках и работе городских служб. Видео открывается и на сайте, и в VK Видео.</p>
+        <a class="btn" href="https://vkvideo.ru/video-126387664_456245631" target="_blank" rel="noopener">Смотреть в VK Видео</a>
+        <span class="src">Источник: официальное сообщество города</span>
+      </div>
     </div>
   </section>
 
