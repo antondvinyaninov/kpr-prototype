@@ -4,8 +4,16 @@
 .logo-mark{display:inline-flex;align-items:center;position:relative}
 
 
-.logo-mark.is-cyber .red{animation:cyber-glitch .55s steps(2,end) 1}
-.logo-mark.is-cyber .fish{animation:cyber-fish .55s ease 1}
+.logo-mark.is-cyber .red:first-of-type{
+  background:linear-gradient(92deg,#35e7ff 0%,#7dd3fc 26%,#a78bfa 54%,#ff2d6a 78%,#35e7ff 100%);
+  background-size:220% 100%;
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 0 7px rgba(53,231,255,.45));
+  animation:cyber-glitch .55s steps(2,end) 1,cyber-shimmer 3.2s linear infinite .55s
+}
+.logo-mark.is-cyber .fish{
+  animation:cyber-fish .5s ease 1,fish-swim 2.8s cubic-bezier(.45,.05,.55,.95) .5s forwards
+}
 
 .logo .fish{cursor:pointer}
 
@@ -16,6 +24,16 @@
   54%{text-shadow:-1px 0 #35e7ff,1px 0 #ff2d6a;transform:translateX(1px)}
   72%{text-shadow:1px 0 #35e7ff,-1px 0 #ff2d6a;transform:none}
   100%{text-shadow:none;transform:none}
+}
+@keyframes cyber-shimmer{
+  0%{background-position:0% 50%}
+  100%{background-position:200% 50%}
+}
+@keyframes fish-swim{
+  0%{transform:translate(0,0) rotate(0);opacity:1}
+  30%{transform:translate(12px,-5px) rotate(-7deg);opacity:1}
+  70%{transform:translate(44px,-19px) rotate(-13deg);opacity:.9}
+  100%{transform:translate(78px,-34px) rotate(-18deg);opacity:0}
 }
 @keyframes cyber-fish{
   0%,100%{filter:drop-shadow(.3px 0 0 var(--accent)) drop-shadow(-.3px 0 0 var(--accent)) drop-shadow(0 .3px 0 var(--accent)) drop-shadow(0 -.3px 0 var(--accent))}
