@@ -1,0 +1,45 @@
+/* Мега-меню «Новости» */
+
+.mega{position:relative;display:inline-flex;align-items:center}
+
+.mega-trigger{
+  font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer;letter-spacing:inherit
+}
+.mega-trigger:hover,.mega-trigger[aria-expanded="true"]{color:var(--accent)}
+
+.mega-panel{
+  position:fixed;top:104px;left:50%;transform:translateX(-50%);z-index:65;
+  width:min(980px,calc(100vw - 32px));
+  display:grid;grid-template-columns:1fr 1fr 320px;
+  background:#fff;border:1px solid var(--edge);border-radius:22px;overflow:hidden;
+  box-shadow:0 26px 64px rgba(20,25,40,.18)
+}
+.mega-panel[hidden]{display:none}
+
+.mega-col{padding:24px 26px 24px}
+.mega-col + .mega-col{border-left:1px solid #f0f1f5}
+
+.mega-link{display:flex;align-items:center;gap:14px;padding:9px 0;font-size:15px;color:#333c4d}
+.mega-link:hover{color:var(--accent)}
+.mega-link svg{flex:none;color:#6b7280}
+.mega-link:hover svg{color:var(--accent)}
+
+.mega-cap{font-size:13px;font-weight:600;color:#212121;margin-bottom:8px}
+.mega-rubs{list-style:none;margin:0;padding:0}
+.mega-rubs li{padding:3px 0}
+.mega-rubs a{font-size:15px;color:#6b7280}
+.mega-rubs a:hover{color:var(--accent)}
+
+.mega-promo{
+  background:#183070;color:#fff;padding:26px 24px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:10px
+}
+.mega-promo .ico{
+  width:92px;height:92px;border-radius:50%;background:#fff;color:#183070;
+  display:grid;place-items:center;margin-bottom:4px
+}
+.mega-promo b{font-size:19px;font-weight:600;letter-spacing:-.01em}
+.mega-promo span{font-size:13.5px;line-height:1.45;color:rgba(255,255,255,.78);max-width:24ch}
+.mega-promo:hover b{text-decoration:underline}
+
+@media(max-width:1080px){.mega-panel{display:none !important}}
