@@ -3,25 +3,6 @@
 .logo{position:relative}
 .logo-mark{display:inline-flex;align-items:center;position:relative}
 
-.logo-cyber{
-  position:absolute;left:50%;top:-38px;z-index:5;
-  transform:translateX(-50%) translateY(6px) scale(.96);
-  padding:7px 13px;border-radius:999px;white-space:nowrap;pointer-events:none;
-  font-family:'Oswald',sans-serif;font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;
-  color:#e6f7ff;
-  background:linear-gradient(135deg,#101b33 0%,#2a1b46 52%,#5d1730 100%);
-  border:1px solid rgba(120,205,255,.45);
-  box-shadow:0 0 16px rgba(80,180,255,.35),inset 0 0 12px rgba(120,205,255,.22);
-  opacity:0;transition:opacity .18s ease,transform .18s ease;
-}
-.logo-cyber::after{
-  content:"";position:absolute;left:50%;bottom:-4px;width:7px;height:7px;transform:translateX(-50%) rotate(45deg);
-  background:#2a1b46;border-right:1px solid rgba(120,205,255,.45);border-bottom:1px solid rgba(120,205,255,.45)
-}
-
-.logo-mark.is-cyber .logo-cyber{
-  opacity:1;transform:translateX(-50%) translateY(0) scale(1)
-}
 
 .logo-mark.is-cyber .red{animation:cyber-glitch .55s steps(2,end) 1}
 .logo-mark.is-cyber .fish{animation:cyber-fish .55s ease 1}
