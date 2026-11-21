@@ -15,8 +15,8 @@
 
 .mega-panel{
   position:fixed;top:98px;left:50%;transform:translateX(-50%) translateY(-4px);z-index:65;
-  width:min(940px,calc(100vw - 32px));
-  display:grid;grid-template-columns:1fr 1fr 300px;
+  width:min(760px,calc(100vw - 32px));
+  display:grid;grid-template-columns:1.2fr .9fr 250px;
   background:#fff;border:1px solid var(--edge);border-radius:18px;overflow:hidden;
   box-shadow:0 22px 54px rgba(20,25,40,.16);
   opacity:0;transition:opacity .14s ease,transform .14s ease
@@ -24,36 +24,36 @@
 .mega-panel:not([hidden]){opacity:1;transform:translateX(-50%) translateY(0)}
 .mega-panel[hidden]{display:none}
 
-.mega-col{padding:16px 20px}
+.mega-col{padding:14px 16px}
 .mega-col + .mega-col{border-left:1px solid #f2f3f7}
 
-.mega-link{display:flex;align-items:center;gap:11px;padding:7px 8px;margin:0 -8px;border-radius:8px;
-  font-size:14.5px;color:#333c4d}
+.mega-link{display:flex;align-items:center;gap:10px;padding:6px 8px;margin:0 -8px;border-radius:8px;
+  font-size:13.5px;color:#333c4d}
 .mega-link:hover{background:#f7f6f2;color:var(--accent)}
-.mega-link svg{flex:none;width:20px;height:20px;color:#6b7280}
+.mega-link svg{flex:none;width:18px;height:18px;color:#6b7280}
 .mega-link:hover svg{color:var(--accent)}
 
 .mega-cap{font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted-2);font-weight:600;margin:0 0 6px 8px}
 .mega-cap-lg{font-size:15px;letter-spacing:-.01em;text-transform:none;color:#212121;margin:0 0 8px 8px}
 .mega-rubs{list-style:none;margin:0;padding:0}
 .mega-rubs li{padding:1px 0}
-.mega-rubs a{display:block;padding:6px 8px;margin:0 -8px;border-radius:8px;font-size:14.5px;color:#6b7280}
+.mega-rubs a{display:block;padding:5px 8px;margin:0 -8px;border-radius:8px;font-size:13.5px;color:#6b7280}
 .mega-rubs a:hover{background:#f7f6f2;color:var(--accent)}
 
 .mega-badge{display:inline-block;margin-left:6px;padding:2px 8px;border-radius:999px;
   background:#e2ecd9;color:#37622a;font-size:11.5px;white-space:nowrap}
 
 .mega-promo{
-  background:#183070;color:#fff;padding:20px;
+  background:#183070;color:#fff;padding:18px;
   display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:7px
 }
 .mega-promo .ico{
-  width:72px;height:72px;border-radius:50%;background:#fff;color:#183070;
+  width:64px;height:64px;border-radius:50%;background:#fff;color:#183070;
   display:grid;place-items:center;margin-bottom:2px
 }
 .mega-promo .ico svg{width:34px;height:34px}
-.mega-promo b{font-size:16.5px;font-weight:600;letter-spacing:-.01em}
-.mega-promo span{font-size:12.5px;line-height:1.4;color:rgba(255,255,255,.78);max-width:22ch}
+.mega-promo b{font-size:15.5px;font-weight:600;letter-spacing:-.01em}
+.mega-promo span{font-size:12px;line-height:1.4;color:rgba(255,255,255,.78);max-width:22ch}
 .mega-promo:hover b{text-decoration:underline}
 
 @media(max-width:1080px){.mega-panel{display:none !important}}
