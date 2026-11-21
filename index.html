@@ -360,7 +360,12 @@
 
   .poll{background:var(--surface);border:1px solid var(--edge);border-radius:var(--r);padding:22px;display:flex;flex-direction:column}
   .poll .q{font-size:18px;line-height:1.3;letter-spacing:-.02em;font-weight:600;margin:6px 0 16px}
-  .opt{margin-bottom:12px}
+  .opt{display:block;width:100%;text-align:left;background:none;border:0;padding:0;margin:0 0 12px;
+    font:inherit;color:inherit;cursor:pointer}
+  .opt:hover:not(:disabled) .row span:first-child{color:var(--accent)}
+  .opt:disabled{cursor:default}
+  .opt.chosen .row span:first-child{color:var(--accent);font-weight:500}
+  .opt.chosen .bar i{background:#c8432f}
   .opt .row{display:flex;justify-content:space-between;font-size:13.5px;margin-bottom:6px}
   .opt .row span:last-child{color:var(--muted-2)}
   .bar{height:6px;border-radius:999px;background:#e8e8e8;overflow:hidden}
@@ -899,44 +904,44 @@
         <div class="poll-set">
           <span class="rub">Опрос недели</span>
           <div class="q">Что нужно городу в первую очередь?</div>
-          <div class="opt">
-            <div class="row"><span>Ремонт дорог</span><span>46%</span></div>
-            <div class="bar"><i style="width:46%"></i></div>
-          </div>
-          <div class="opt">
-            <div class="row"><span>Новая школа</span><span>28%</span></div>
-            <div class="bar"><i style="width:28%"></i></div>
-          </div>
-          <div class="opt">
-            <div class="row"><span>Благоустройство</span><span>18%</span></div>
-            <div class="bar"><i style="width:18%"></i></div>
-          </div>
-          <div class="opt">
-            <div class="row"><span>Освещение улиц</span><span>8%</span></div>
-            <div class="bar"><i style="width:8%"></i></div>
-          </div>
+          <button class="opt" type="button" data-votes="143">
+            <span class="row"><span>Ремонт дорог</span><span class="pct">46%</span></span>
+            <span class="bar"><i style="width:46%"></i></span>
+          </button>
+          <button class="opt" type="button" data-votes="87">
+            <span class="row"><span>Новая школа</span><span class="pct">28%</span></span>
+            <span class="bar"><i style="width:28%"></i></span>
+          </button>
+          <button class="opt" type="button" data-votes="56">
+            <span class="row"><span>Благоустройство</span><span class="pct">18%</span></span>
+            <span class="bar"><i style="width:18%"></i></span>
+          </button>
+          <button class="opt" type="button" data-votes="26">
+            <span class="row"><span>Освещение улиц</span><span class="pct">8%</span></span>
+            <span class="bar"><i style="width:8%"></i></span>
+          </button>
           <div class="note">Проголосовали 312 человек</div>
         </div>
 
         <div class="poll-set" hidden>
           <span class="rub">Опрос недели</span>
           <div class="q">Что мешает гулять вечером?</div>
-          <div class="opt">
-            <div class="row"><span>Тёмные улицы</span><span>41%</span></div>
-            <div class="bar"><i style="width:41%"></i></div>
-          </div>
-          <div class="opt">
-            <div class="row"><span>Разбитые тротуары</span><span>33%</span></div>
-            <div class="bar"><i style="width:33%"></i></div>
-          </div>
-          <div class="opt">
-            <div class="row"><span>Мало скамеек</span><span>17%</span></div>
-            <div class="bar"><i style="width:17%"></i></div>
-          </div>
-          <div class="opt">
-            <div class="row"><span>Нет общественных туалетов</span><span>9%</span></div>
-            <div class="bar"><i style="width:9%"></i></div>
-          </div>
+          <button class="opt" type="button" data-votes="85">
+            <span class="row"><span>Тёмные улицы</span><span class="pct">41%</span></span>
+            <span class="bar"><i style="width:41%"></i></span>
+          </button>
+          <button class="opt" type="button" data-votes="69">
+            <span class="row"><span>Разбитые тротуары</span><span class="pct">33%</span></span>
+            <span class="bar"><i style="width:33%"></i></span>
+          </button>
+          <button class="opt" type="button" data-votes="35">
+            <span class="row"><span>Мало скамеек</span><span class="pct">17%</span></span>
+            <span class="bar"><i style="width:17%"></i></span>
+          </button>
+          <button class="opt" type="button" data-votes="19">
+            <span class="row"><span>Нет общественных туалетов</span><span class="pct">9%</span></span>
+            <span class="bar"><i style="width:9%"></i></span>
+          </button>
           <div class="note">Проголосовали 208 человек</div>
         </div>
 
@@ -1004,5 +1009,40 @@
 <script src="assets/footer.js?v=1"></script>
 <script src="assets/logo-effects.js?v=3"></script>
 <script src="assets/mobile-menu.js?v=2"></script>
+<script>
+  (() => {
+    document.querySelectorAll('.poll-set').forEach(function (set) {
+      var opts = [...set.querySelectorAll('.opt')];
+      var note = set.querySelector('.note');
+      if (!opts.length || !note) return;
+
+      function total() {
+        return opts.reduce((sum, o) => sum + Number(o.dataset.votes || 0), 0);
+      }
+
+      function render() {
+        var t = total();
+        opts.forEach(function (o) {
+          var pct = t ? Math.round(Number(o.dataset.votes) / t * 100) : 0;
+          o.querySelector('.pct').textContent = pct + '%';
+          o.querySelector('.bar i').style.width = pct + '%';
+        });
+        note.textContent = 'Проголосовали ' + t.toLocaleString('ru-RU') + ' человек';
+      }
+
+      opts.forEach(function (o) {
+        o.addEventListener('click', function () {
+          if (set.dataset.voted === '1') return;
+          set.dataset.voted = '1';
+          opts.forEach(function (x) { x.disabled = true; });
+          o.dataset.votes = String(Number(o.dataset.votes || 0) + 1);
+          o.classList.add('chosen');
+          render();
+        });
+      });
+    });
+  })();
+</script>
+
 </body>
 </html>
