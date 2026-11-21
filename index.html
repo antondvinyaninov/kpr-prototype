@@ -52,6 +52,9 @@
   .topline .wrap{display:flex;align-items:center;gap:18px;min-height:36px}
   .topline .sep{width:1px;height:12px;background:var(--line)}
   .topline .right{margin-left:auto;display:flex;gap:16px}
+  .topline .svc{color:var(--muted)}
+  .topline .svc:hover{color:var(--accent)}
+  @media(max-width:1100px){.topline .svc{display:none}}
   @media(max-width:640px){
     .topline .wrap{gap:12px;font-size:11.5px}
     .topline .cur{display:none}
@@ -215,6 +218,15 @@
   .read a:hover b{color:var(--accent)}
   .read .meta{display:block;font-size:12px;color:var(--muted-2);margin-top:3px}
 
+  /* новости компаний */
+  .clist{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  @media(max-width:900px){.clist{grid-template-columns:1fr}}
+  .clist li{background:#fff;border:1px solid var(--edge);border-radius:18px;padding:16px 18px}
+  .clist .paid{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted-2)}
+  .clist b{display:block;margin-top:6px;font-size:15px;line-height:1.35;font-weight:500;letter-spacing:-.01em}
+  .clist a:hover b{color:var(--accent)}
+  .clist .when{display:block;margin-top:8px;font-size:12.5px;color:var(--muted-2)}
+
   /* свежий номер */
   .issue{
     background:#fff;border:1px solid var(--edge);border-radius:var(--r-lg);padding:26px;
@@ -298,6 +310,12 @@
   .bar{height:6px;border-radius:999px;background:#e8e8e8;overflow:hidden}
   .bar i{display:block;height:100%;border-radius:999px;background:var(--accent)}
   .poll .note{margin-top:auto;padding-top:14px;font-size:12px;color:var(--muted-2)}
+  .poll .poll-set .note{margin-top:0;padding-top:14px}
+  .poll-more{margin-top:auto;align-self:flex-start;border:0;background:none;padding:0;cursor:pointer;
+    font:inherit;font-size:13px;font-weight:500;color:var(--accent)}
+  .poll-more:hover{text-decoration:underline}
+  .poll-report{display:block;margin-top:10px;font-size:12px;color:var(--muted-2)}
+  .poll-report:hover{color:var(--accent)}
 
   /* подвал */
   footer{margin-top:26px;background:#fff;border-top:1px solid var(--line);padding:38px 0 30px}
@@ -337,6 +355,9 @@
     <span class="sep cur-sep"></span>
     <span class="cur">Курс: $ 82,19 · € 90,34</span>
     <div class="right">
+      <a class="svc" href="spravochnik.html">Справочник</a>
+      <a class="svc" href="katalog.html">Каталог</a>
+      <a class="svc" href="#">Обратная связь</a>
       <span class="keep">Сарапул</span>
       <span>16+</span>
     </div>
@@ -474,6 +495,71 @@
       </a>
 
     </div>
+  </section>
+
+  <!-- добрые новости -->
+  <section class="wrap">
+    <div class="sec-head">
+      <div>
+        <h2>Добрые новости</h2>
+        <div class="sub">То, что хочется пересказать</div>
+      </div>
+      <a class="more" href="#">Все добрые новости →</a>
+    </div>
+    <div class="feed">
+      <a class="ncard" href="#">
+        <div class="ph"><img src="assets/photos/card-students.jpg" alt=""></div>
+        <div class="body">
+          <span class="rub">Культура</span>
+          <h3>Юные художники Сарапула получили Гран-при конкурса «Рисуем сказку»</h3>
+          <div class="meta"><span>21 ноября, 09:40</span><span class="eye">742</span></div>
+        </div>
+      </a>
+      <a class="ncard" href="#">
+        <div class="ph"><img src="assets/photos/card-speaker.jpg" alt=""></div>
+        <div class="body">
+          <span class="rub">Милосердие</span>
+          <h3>Школьники собрали 120 кг корма для городского приюта</h3>
+          <div class="meta"><span>20 ноября, 16:15</span><span class="eye">1 318</span></div>
+        </div>
+      </a>
+      <a class="ncard" href="#">
+        <div class="ph"><img src="assets/photos/card-actor.jpg" alt=""></div>
+        <div class="body">
+          <span class="rub">Общество</span>
+          <h3>Ветераны труда получили медали к юбилею города</h3>
+          <div class="meta"><span>19 ноября, 11:05</span><span class="eye">905</span></div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- новости компаний -->
+  <section class="wrap">
+    <div class="sec-head">
+      <div>
+        <h2>Новости компаний</h2>
+        <div class="sub">Партнёрские материалы</div>
+      </div>
+      <a class="more" href="katalog.html">Каталог организаций →</a>
+    </div>
+    <ul class="clist">
+      <li>
+        <span class="paid">Партнёрский материал</span>
+        <a href="#"><b>Комбинат запустил вторую линию упаковки</b></a>
+        <span class="when">20 ноября</span>
+      </li>
+      <li>
+        <span class="paid">Партнёрский материал</span>
+        <a href="#"><b>Сеть аптек открыла пункт в Закамске</b></a>
+        <span class="when">19 ноября</span>
+      </li>
+      <li>
+        <span class="paid">Партнёрский материал</span>
+        <a href="#"><b>Автосервис на Удмуртской расширяет приём</b></a>
+        <span class="when">18 ноября</span>
+      </li>
+    </ul>
   </section>
 
   <!-- рубрика дня -->
@@ -639,25 +725,52 @@
       </div>
 
       <div class="poll">
-        <span class="rub">Опрос недели</span>
-        <div class="q">Что нужно городу в первую очередь?</div>
-        <div class="opt">
-          <div class="row"><span>Ремонт дорог</span><span>46%</span></div>
-          <div class="bar"><i style="width:46%"></i></div>
+        <div class="poll-set">
+          <span class="rub">Опрос недели</span>
+          <div class="q">Что нужно городу в первую очередь?</div>
+          <div class="opt">
+            <div class="row"><span>Ремонт дорог</span><span>46%</span></div>
+            <div class="bar"><i style="width:46%"></i></div>
+          </div>
+          <div class="opt">
+            <div class="row"><span>Новая школа</span><span>28%</span></div>
+            <div class="bar"><i style="width:28%"></i></div>
+          </div>
+          <div class="opt">
+            <div class="row"><span>Благоустройство</span><span>18%</span></div>
+            <div class="bar"><i style="width:18%"></i></div>
+          </div>
+          <div class="opt">
+            <div class="row"><span>Освещение улиц</span><span>8%</span></div>
+            <div class="bar"><i style="width:8%"></i></div>
+          </div>
+          <div class="note">Проголосовали 312 человек</div>
         </div>
-        <div class="opt">
-          <div class="row"><span>Новая школа</span><span>28%</span></div>
-          <div class="bar"><i style="width:28%"></i></div>
+
+        <div class="poll-set" hidden>
+          <span class="rub">Опрос недели</span>
+          <div class="q">Что мешает гулять вечером?</div>
+          <div class="opt">
+            <div class="row"><span>Тёмные улицы</span><span>41%</span></div>
+            <div class="bar"><i style="width:41%"></i></div>
+          </div>
+          <div class="opt">
+            <div class="row"><span>Разбитые тротуары</span><span>33%</span></div>
+            <div class="bar"><i style="width:33%"></i></div>
+          </div>
+          <div class="opt">
+            <div class="row"><span>Мало скамеек</span><span>17%</span></div>
+            <div class="bar"><i style="width:17%"></i></div>
+          </div>
+          <div class="opt">
+            <div class="row"><span>Нет общественных туалетов</span><span>9%</span></div>
+            <div class="bar"><i style="width:9%"></i></div>
+          </div>
+          <div class="note">Проголосовали 208 человек</div>
         </div>
-        <div class="opt">
-          <div class="row"><span>Благоустройство</span><span>18%</span></div>
-          <div class="bar"><i style="width:18%"></i></div>
-        </div>
-        <div class="opt">
-          <div class="row"><span>Освещение улиц</span><span>8%</span></div>
-          <div class="bar"><i style="width:8%"></i></div>
-        </div>
-        <div class="note">Проголосовали 312 человек</div>
+
+        <button class="poll-more" type="button" id="pollMore">Другой опрос</button>
+        <a class="poll-report" href="#">Заметили ошибку? Сообщите нам</a>
       </div>
     </div>
   </section>
@@ -720,6 +833,20 @@
     </div>
   </div>
 </footer>
+
+<script>
+  (() => {
+    const sets = [...document.querySelectorAll('.poll-set')];
+    const btn = document.getElementById('pollMore');
+    if (!btn || sets.length < 2) return;
+    let i = 0;
+    btn.addEventListener('click', () => {
+      sets[i].hidden = true;
+      i = (i + 1) % sets.length;
+      sets[i].hidden = false;
+    });
+  })();
+</script>
 
 </body>
 </html>
