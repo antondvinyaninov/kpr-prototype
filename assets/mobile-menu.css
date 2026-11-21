@@ -1,0 +1,30 @@
+/* Мобильное меню (бургер) */
+
+.mmenu{position:fixed;inset:0;z-index:90;display:flex;justify-content:flex-end}
+.mmenu[hidden]{display:none}
+
+.mmenu-backdrop{position:absolute;inset:0;background:rgba(12,16,24,.45);animation:mmenu-fade .18s ease}
+.mmenu-panel{
+  position:relative;width:min(360px,88vw);height:100%;background:#fff;padding:16px 20px 26px;
+  display:flex;flex-direction:column;overflow:auto;box-shadow:-16px 0 44px rgba(20,25,40,.2);
+  animation:mmenu-slide .22s ease
+}
+.mmenu-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.mmenu-title{font-family:Oswald,sans-serif;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted-2)}
+.mmenu-close{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:#fff;
+  display:grid;place-items:center;cursor:pointer;color:var(--ink)}
+.mmenu-close:hover{border-color:var(--accent);color:var(--accent)}
+
+.mmenu-grp{margin:14px 0 4px;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted-2);font-weight:600}
+.mmenu a{display:block;padding:11px 2px;font-size:17px;color:#1f2430;border-bottom:1px solid #f2f3f7}
+.mmenu a:hover,.mmenu a:focus{color:var(--accent)}
+.mmenu .mmenu-cta{margin-top:18px;border:0;border-radius:999px;text-align:center;padding:12px;
+  background:var(--accent);color:#fff;font-size:15px;font-weight:500}
+.mmenu .mmenu-cta:hover{filter:brightness(1.05);color:#fff}
+
+body.mmenu-open{overflow:hidden}
+
+@keyframes mmenu-slide{from{opacity:.55}to{opacity:1}}
+@keyframes mmenu-fade{from{opacity:0}to{opacity:1}}
+
+@media(min-width:1081px){.mmenu{display:none !important}}
