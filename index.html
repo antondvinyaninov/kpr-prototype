@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Красное Прикамье — главная</title>
+<link rel="icon" href="assets/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Oswald:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#faf9f6;
+    --surface:#fff;
+    --edge:#e8e8e8;
+    --ink:#212121;
+    --muted:#5f6880;
+    --muted-2:#7a87a7;
+    --line:#dcdfed;
+    --accent:#ed4441;
+    --accent-soft:#fdeeea;
+    --navy:#18306f;
+    --dark:#141413;
+    --r:24px;
+    --r-lg:32px;
+    --wrap:1280px;
+  }
+  /* зерно бумаги: фиксированный слой поверх страницы */
+  body::after{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:60;opacity:.055;
+    mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:180px 180px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;background:var(--bg);color:var(--ink);
+    font:16px/1.5 Outfit,-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
+  .wrap{width:min(var(--wrap),calc(100% - 48px));margin-inline:auto}
+  @media(max-width:640px){.wrap{width:calc(100% - 32px)}}
+
+  /* ---------- шапка ---------- */
+  .topline{
+    background:var(--bg);
+    font-size:12.5px;color:var(--muted);
+  }
+  .topline .wrap{display:flex;align-items:center;gap:18px;min-height:36px}
+  .topline .sep{width:1px;height:12px;background:var(--line)}
+  .topline .right{margin-left:auto;display:flex;gap:16px}
+  @media(max-width:640px){
+    .topline .wrap{gap:12px;font-size:11.5px}
+    .topline .cur{display:none}
+    .topline .cur-sep{display:none}
+    .topline .right span:not(.keep){display:none}
+  }
+
+  header{
+    position:sticky;top:14px;z-index:40;
+    width:min(var(--wrap),calc(100% - 48px));margin:14px auto 18px;
+    background:rgba(255,255,255,.86);
+    -webkit-backdrop-filter:blur(8px) saturate(1.1);
+    backdrop-filter:blur(8px) saturate(1.1);
+    border:1px solid var(--edge);border-radius:20px;
+    box-shadow:0 8px 26px rgba(20,25,40,.07)
+  }
+  @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+    header{background:#fff}
+  }
+  header .wrap{width:auto;padding:0 22px;margin:0}
+  @media(max-width:640px){
+    header{width:calc(100% - 24px);top:8px;margin:10px auto 14px;border-radius:16px}
+    header .wrap{padding:0 14px}
+  }
+  .nav{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:24px;height:76px}
+  .logo{display:inline-flex;align-items:center;white-space:nowrap;text-transform:uppercase;
+    font-family:'Oswald',-apple-system,sans-serif;font-size:34px;line-height:1}
+  .logo .red{color:var(--accent);font-weight:400;letter-spacing:.02em}
+  .logo .fish{height:1.12em;width:auto;vertical-align:center;transform:translateY(.07em);
+    margin:0 .09em 0 .09em;
+    filter:drop-shadow(.3px 0 0 var(--accent)) drop-shadow(-.3px 0 0 var(--accent)) drop-shadow(0 .3px 0 var(--accent)) drop-shadow(0 -.3px 0 var(--accent))}
+  .logo .navy{color:#183070;font-weight:400;letter-spacing:-.005em;display:inline-block;margin-left:.4em}
+  .logo:hover{opacity:.88}
+  @media(max-width:760px){.logo{font-size:22px}}
+  .menu{display:flex;gap:20px;margin-left:24px;font-size:16px;color:#333c4d;font-weight:400}
+  .menu a:hover{color:var(--accent)}
+  .nav-actions{display:flex;align-items:center;gap:10px}
+  .iconbtn{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;
+    border:1px solid var(--line);background:#fff;color:var(--ink);cursor:pointer}
+  .iconbtn:hover{border-color:var(--accent);color:var(--accent)}
+  .btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:10px 18px;
+    font-size:14px;font-weight:500;background:var(--accent);color:#fff}
+  .btn:hover{filter:brightness(1.06)}
+  .btn-login{display:inline-flex;align-items:center;border-radius:999px;padding:9px 16px;
+    font-size:14px;font-weight:500;color:var(--ink);border:1px solid var(--line);background:#fff}
+  .btn-login:hover{border-color:var(--accent);color:var(--accent)}
+  @media(max-width:520px){.btn-login{display:none}}
+  .burger{display:none}
+  @media(max-width:1080px){
+    .menu{display:none}
+    .nav{grid-template-columns:1fr auto}
+    .burger{display:grid}
+  }
+
+  /* ---------- первый экран ---------- */
+  .first{padding:20px 0 8px}
+  .first-grid{display:grid;grid-template-columns:1.55fr .95fr;gap:16px}
+  @media(max-width:1024px){.first-grid{grid-template-columns:1fr}}
+
+  .lead{
+    position:relative;border-radius:var(--r-lg);overflow:hidden;min-height:460px;
+    display:flex;flex-direction:column;justify-content:space-between;padding:26px;color:#fff;
+    background:linear-gradient(160deg,#16264f 0%,#2b4a7d 55%,#6f8bb0 100%);
+  }
+  .lead::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(to top,rgba(10,14,20,.88) 0%,rgba(10,14,20,.35) 55%,rgba(10,14,20,.18) 100%);
+  }
+  .lead > *{position:relative;z-index:2}
+  .lead .badge{
+    align-self:flex-start;border-radius:999px;background:rgba(255,255,255,.16);
+    border:1px solid rgba(255,255,255,.28);padding:7px 14px;font-size:12.5px;
+    letter-spacing:.02em;backdrop-filter:blur(8px)
+  }
+  .lead h1{
+    margin:0 0 12px;font-size:clamp(30px,3.6vw,46px);line-height:1.06;
+    letter-spacing:-.03em;font-weight:600;max-width:22ch
+  }
+  .lead p{margin:0 0 18px;font-size:16.5px;line-height:1.45;color:rgba(255,255,255,.85);max-width:52ch}
+  .lead .meta{display:flex;gap:14px;font-size:13px;color:rgba(255,255,255,.75)}
+
+  .side{display:grid;grid-template-rows:1fr auto;gap:16px}
+  .panel{background:var(--surface);border:1px solid var(--edge);border-radius:var(--r);padding:20px 22px;display:flex;flex-direction:column}
+  .panel .ph{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:14px}
+  .panel .ph b{font-size:15px;letter-spacing:-.01em;font-weight:600}
+  .panel .ph a{font-size:12.5px;color:var(--accent)}
+  .nowlist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;justify-content:space-between;flex:1}
+  .nowlist li{padding:11px 0;border-top:1px solid var(--line)}
+  .nowlist li:first-child{border-top:0;padding-top:0}
+  .nowlist a{display:grid;grid-template-columns:44px 1fr;gap:12px;align-items:start}
+  .nowlist time{font-size:12.5px;color:var(--accent);font-weight:500;padding-top:2px}
+  .nowlist b{font-size:15px;line-height:1.35;font-weight:500;letter-spacing:-.01em}
+  .nowlist a:hover b{color:var(--accent)}
+
+  .promo{
+    position:relative;overflow:hidden;border-radius:var(--r);padding:18px 20px;background:#183070;
+    display:flex;flex-direction:column;justify-content:space-between;gap:12px
+  }
+  .promo::after{
+    content:"";position:absolute;right:-14px;bottom:-30px;width:104px;height:104px;
+    border:12px solid rgba(255,255,255,.16);border-radius:46% 54% 48% 52%;transform:rotate(18deg)
+  }
+  .promo .kicker{position:relative;z-index:2;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#ffb3ad;font-weight:600}
+  .promo h3{position:relative;z-index:2;margin:6px 0 0;font-size:20px;line-height:1.2;letter-spacing:-.02em;font-weight:600;color:#fff}
+  .promo .btn{align-self:flex-start;position:relative;z-index:2;padding:9px 16px;font-size:13.5px;background:#fff;color:var(--accent)}
+
+  /* ---------- полоса разделов ---------- */
+
+  /* ---------- секции ---------- */
+  section{padding:34px 0}
+  .sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:18px}
+  h2{margin:0;font-size:clamp(24px,2.8vw,32px);line-height:1.15;letter-spacing:-.03em;font-weight:600}
+  .sec-head .more{font-size:14px;color:var(--accent);white-space:nowrap;font-weight:500}
+  .sec-head .sub{font-size:13px;color:var(--muted-2)}
+
+  /* лента */
+  .feed{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  @media(max-width:980px){.feed{grid-template-columns:1fr 1fr}}
+  @media(max-width:640px){.feed{grid-template-columns:1fr}}
+  .ncard{background:var(--surface);border:1px solid var(--edge);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;transition:box-shadow .18s,transform .18s}
+  .ncard:hover{box-shadow:0 10px 26px rgba(20,25,40,.09);transform:translateY(-2px)}
+  .ncard .ph{aspect-ratio:16/10;
+    background:radial-gradient(80% 65% at 22% 14%,rgba(255,255,255,.55),transparent 62%),
+      linear-gradient(135deg,#7f95ab,#b9c8d7 55%,#e2e9f0)}
+  .ncard .ph.v2{background:radial-gradient(80% 65% at 25% 18%,rgba(255,255,255,.5),transparent 62%),
+      linear-gradient(135deg,#7d918a,#b5c9c1 55%,#e0ece6)}
+  .ncard .ph.v3{background:radial-gradient(80% 65% at 20% 16%,rgba(255,255,255,.5),transparent 62%),
+      linear-gradient(135deg,#9c9186,#cfc7bd 55%,#efe9e1)}
+  .ncard .body{padding:18px 20px 20px;display:flex;flex-direction:column;flex:1}
+  .rub{font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:var(--accent);font-weight:600}
+  .ncard h3{margin:8px 0 10px;font-size:19px;line-height:1.3;letter-spacing:-.02em;font-weight:500}
+  .ncard:hover h3{color:var(--accent)}
+  .ncard .meta{margin-top:auto;display:flex;gap:12px;font-size:12.5px;color:var(--muted-2)}
+  .ncard .meta .eye::before{content:"◉";margin-right:4px;font-size:10px}
+
+  /* рубрика дня + читают */
+  .day{display:grid;grid-template-columns:1.6fr 1fr;gap:16px;align-items:start}
+  @media(max-width:1024px){.day{grid-template-columns:1fr}}
+  .bigcard{
+    position:relative;border-radius:var(--r-lg);overflow:hidden;min-height:360px;color:#fff;
+    display:flex;flex-direction:column;justify-content:flex-end;padding:26px;
+    background:linear-gradient(150deg,#1d2f55 0%,#3c5a86 55%,#8ea6c4 100%)
+  }
+  .bigcard::after{content:"";position:absolute;inset:0;
+    background:linear-gradient(to top,rgba(10,14,20,.92) 0%,rgba(10,14,20,.45) 55%,rgba(10,14,20,.2) 100%)}
+  .bigcard>*{position:relative;z-index:2}
+  .bigcard .tag{display:inline-flex;align-self:flex-start;margin-bottom:auto;
+    background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.26);
+    border-radius:999px;padding:6px 13px;font-size:12px}
+  .bigcard h3{margin:0 0 10px;font-size:clamp(24px,2.6vw,32px);line-height:1.12;letter-spacing:-.03em;font-weight:600;max-width:24ch}
+  .bigcard p{margin:0 0 16px;font-size:15px;color:rgba(255,255,255,.82);max-width:56ch}
+  .bigcard .go{font-size:14px;font-weight:500;color:#fff}
+
+  .read{background:var(--surface);border:1px solid var(--edge);border-radius:var(--r);padding:22px}
+  .read ol{margin:0;padding:0;list-style:none;counter-reset:r}
+  .read li{counter-increment:r;border-top:1px solid var(--line);padding:13px 0}
+  .read li:first-child{border-top:0;padding-top:0}
+  .read a{display:grid;grid-template-columns:26px 1fr;gap:10px;align-items:start}
+  .read a::before{content:counter(r,decimal-leading-zero);font-size:12px;color:var(--accent);font-weight:600;padding-top:3px}
+  .read b{font-size:15px;line-height:1.35;font-weight:500;letter-spacing:-.01em}
+  .read a:hover b{color:var(--accent)}
+  .read .meta{display:block;font-size:12px;color:var(--muted-2);margin-top:3px}
+
+  /* свежий номер */
+  .issue{
+    background:#fff;border:1px solid var(--edge);border-radius:var(--r-lg);padding:26px;
+    display:grid;grid-template-columns:300px minmax(0,1fr) 300px;gap:32px;align-items:start
+  }
+  @media(max-width:1180px){
+    .issue{grid-template-columns:300px minmax(0,1fr)}
+    .person{grid-column:1/-1}
+  }
+  @media(max-width:900px){
+    .issue{grid-template-columns:1fr}
+    .person{grid-column:auto}
+  }
+  .cover{
+    aspect-ratio:900/1300;border-radius:4px;background:#fff;overflow:hidden;
+    box-shadow:0 20px 44px rgba(20,25,40,.18)
+  }
+  @media(max-width:900px){.cover{max-width:300px}}
+  .cover img{width:100%;height:100%;object-fit:cover;display:block}
+  .issue-right h3{margin:0 0 6px;font-size:22px;letter-spacing:-.02em;font-weight:600}
+  .issue-right .date{font-size:12.5px;color:var(--muted-2);margin-bottom:16px}
+  .issue-list{list-style:none;margin:0;padding:0}
+  .issue-list li{border-top:1px solid #d7dbe8;padding:13px 0;height:132px;overflow:hidden;
+    display:flex;flex-direction:column}
+  .issue-list li:first-child{border-top:0}
+  .issue-list .rub{color:var(--accent)}
+  .issue-list b{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+    font-size:15.5px;line-height:1.35;font-weight:500;margin-top:4px;letter-spacing:-.01em;min-height:2.7em}
+  .issue-list a:hover b{color:var(--accent)}
+  .issue-list .lead-sm{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+    font-size:13.5px;color:var(--muted);margin-top:3px;min-height:2.9em}
+  @media(max-width:640px){
+    .issue-list li{height:auto;overflow:visible}
+    .issue-list b,.issue-list .lead-sm{display:block;-webkit-line-clamp:none;min-height:0;overflow:visible}
+  }
+  .issue-cover{max-width:300px;display:flex;flex-direction:column;gap:10px}
+  .issue-read{justify-content:center;padding:11px 14px;font-size:13.5px}
+  .issue-read span{opacity:.72;font-weight:400;white-space:nowrap}
+  .person{max-width:320px}
+  .person-ph{aspect-ratio:300/270;border-radius:14px;overflow:hidden;background:#dde1ea}
+  .person-ph img{width:100%;height:100%;object-fit:cover;display:block}
+  .person-label{margin-top:14px;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:600}
+  .person-name{margin-top:5px;font-size:19px;font-weight:600;letter-spacing:-.02em;line-height:1.2}
+  .person-role{margin-top:3px;font-size:12.5px;color:var(--muted-2)}
+  .person p{margin:9px 0 0;font-size:13.5px;line-height:1.45;color:var(--muted)}
+  .person a{display:inline-block;margin-top:9px;font-size:13.5px;color:var(--accent)}
+
+  /* справочник */
+  .quick{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+  @media(max-width:900px){.quick{grid-template-columns:1fr 1fr}}
+  @media(max-width:560px){.quick{grid-template-columns:1fr}}
+  .qrow{display:flex;align-items:center;gap:12px;background:var(--surface);border:1px solid var(--edge);border-radius:16px;
+    padding:14px 16px;transition:background .2s ease}
+  .qrow:hover{background:#f4f4f4;border-color:#dcdcdc}
+  .qrow svg{flex:0 0 22px;color:#3483e8}
+  .qrow .txt{display:flex;flex-direction:column;gap:1px;min-width:0}
+  .qrow b{font-size:14.5px;font-weight:600;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .qrow small{font-size:12px;color:var(--muted-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .qrow .arw{margin-left:auto;flex:0 0 16px;color:#b8c0d4}
+
+  /* афиша + опрос */
+  .two{display:grid;grid-template-columns:1.5fr 1fr;gap:16px}
+  @media(max-width:1024px){.two{grid-template-columns:1fr}}
+  .events{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  @media(max-width:720px){.events{grid-template-columns:1fr}}
+  .ev{background:var(--surface);border:1px solid var(--edge);border-radius:var(--r);overflow:hidden;transition:box-shadow .18s}
+  .ev:hover{box-shadow:0 10px 26px rgba(20,25,40,.09)}
+  .ev .ph{aspect-ratio:16/10;background:linear-gradient(135deg,#b7a79a,#e0d3c6)}
+  .ev .ph.v2{background:linear-gradient(135deg,#9aa8b8,#d3dde7)}
+  .ev .ph.v3{background:linear-gradient(135deg,#a8b39a,#dde5d2)}
+  .ev .body{padding:14px 16px 16px}
+  .ev .when{font-size:12px;color:var(--accent);font-weight:600;letter-spacing:.02em}
+  .ev h3{margin:6px 0 6px;font-size:16px;line-height:1.3;letter-spacing:-.01em;font-weight:500}
+  .ev .place{font-size:12.5px;color:var(--muted-2)}
+
+  .poll{background:var(--surface);border:1px solid var(--edge);border-radius:var(--r);padding:22px;display:flex;flex-direction:column}
+  .poll .q{font-size:18px;line-height:1.3;letter-spacing:-.02em;font-weight:600;margin:6px 0 16px}
+  .opt{margin-bottom:12px}
+  .opt .row{display:flex;justify-content:space-between;font-size:13.5px;margin-bottom:6px}
+  .opt .row span:last-child{color:var(--muted-2)}
+  .bar{height:6px;border-radius:999px;background:#e8e8e8;overflow:hidden}
+  .bar i{display:block;height:100%;border-radius:999px;background:var(--accent)}
+  .poll .note{margin-top:auto;padding-top:14px;font-size:12px;color:var(--muted-2)}
+
+  /* подвал */
+  footer{margin-top:26px;background:#fff;border-top:1px solid var(--line);padding:38px 0 30px}
+  .fgrid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:28px}
+  @media(max-width:900px){.fgrid{grid-template-columns:1fr 1fr}}
+  @media(max-width:560px){.fgrid{grid-template-columns:1fr}}
+  footer h4{margin:0 0 12px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted-2);font-weight:600}
+  footer ul{list-style:none;margin:0;padding:0;display:grid;gap:8px;font-size:14px}
+  footer a:hover{color:var(--accent)}
+  .fbrand .logo img{height:64px;width:auto;display:block}
+  .fbrand p{font-size:13.5px;color:var(--muted);margin:10px 0 16px;max-width:32ch;line-height:1.5}
+  .socials{display:flex;gap:8px}
+  .socials a{width:36px;height:36px;border-radius:50%;border:1px solid var(--line);
+    display:grid;place-items:center;font-size:11px;color:var(--muted);font-weight:600}
+  .socials a:hover{border-color:var(--accent);color:var(--accent)}
+  .legal{margin-top:30px;padding-top:18px;border-top:1px solid var(--line);
+    display:flex;flex-wrap:wrap;gap:8px 22px;font-size:12px;color:var(--muted-2)}
+  .legal .age{margin-left:auto;border:1px solid var(--line);border-radius:6px;padding:2px 8px;color:var(--muted)}
+
+  .lead{position:relative}
+  .lead>.lead-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+  .lead>:not(.lead-img){position:relative;z-index:2}
+  .bigcard{position:relative}
+  .bigcard>.big-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+  .bigcard>:not(.big-img){position:relative;z-index:2}
+  .ncard .ph img,.ev .ph img{width:100%;height:100%;object-fit:cover;display:block}
+</style>
+</head>
+<body>
+
+<!-- верхняя служебная строка -->
+<div class="topline">
+  <div class="wrap">
+    <span>Суббота, 21 ноября 2026</span>
+    <span class="sep"></span>
+    <span>+1°, облачно</span>
+    <span class="sep cur-sep"></span>
+    <span class="cur">Курс: $ 82,19 · € 90,34</span>
+    <div class="right">
+      <span class="keep">Сарапул</span>
+      <span>16+</span>
+    </div>
+  </div>
+</div>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#" aria-label="Красное Прикамье — на главную">
+      <span class="red">КРА</span><img class="fish" src="assets/fish-mark.png" alt=""><span class="red">НОЕ</span><span class="navy">ПРИКАМЬЕ</span>
+    </a>
+    <nav class="menu">
+      <a href="#">Культура</a>
+      <a href="#">Образование</a>
+      <a href="#">Общество</a>
+      <a href="#">Бизнес</a>
+      <a href="#">Персона</a>
+      <a href="#">История</a>
+      <a href="#">Конкурсы</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="iconbtn burger" aria-label="Меню">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+      <button class="iconbtn" aria-label="Поиск">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      </button>
+      <a class="btn-login" href="#">Войти</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- первый экран -->
+  <div class="first wrap">
+    <div class="first-grid">
+
+      <a class="lead" href="#">
+        <img class="lead-img" src="assets/photos/hero-theatre.jpg" alt="Сцена фестиваля «Театральное Приволжье»">
+        <span class="badge">Главное сегодня</span>
+        <div>
+          <h1>В Удмуртии продлён приём заявок на фестиваль «Театральное Приволжье»</h1>
+          <p>Участвуют школьные и студенческие театры. Рассказываем, кто может подать заявку, какие номинации есть и что получат победители.</p>
+          <div class="meta"><span>18 ноября, 14:20</span><span>1 204 просмотра</span><span>5 комментариев</span></div>
+        </div>
+      </a>
+
+      <div class="side">
+        <div class="panel">
+          <div class="ph"><b>Сейчас в городе</b><a href="#">Все →</a></div>
+          <ul class="nowlist">
+            <li><a href="#"><time>12:40</time><b>Ремонт моста через Каму начнётся в апреле</b></a></li>
+            <li><a href="#"><time>11:15</time><b>В трёх микрорайонах отключат горячую воду с понедельника</b></a></li>
+            <li><a href="#"><time>10:05</time><b>Школьники города победили на краевой олимпиаде</b></a></li>
+            <li><a href="#"><time>09:30</time><b>Открыта запись к врачу через Госуслуги</b></a></li>
+            <li><a href="#"><time>08:50</time><b>На выходных перекроют улицу Горького</b></a></li>
+          </ul>
+        </div>
+
+        <div class="promo">
+          <div>
+            <div class="kicker">Печатная версия</div>
+            <h3>Свежий номер — каждый четверг</h3>
+          </div>
+          <a class="btn" href="#">Оформить подписку</a>
+        </div>
+      </div>
+
+    </div>
+
+    
+  </div>
+
+  <!-- лента -->
+  <section class="wrap">
+    <div class="sec-head">
+      <h2>Новости</h2>
+      <a class="more" href="#">Все новости →</a>
+    </div>
+    <div class="feed">
+
+      <a class="ncard" href="#">
+        <div class="ph"><img src="assets/photos/card-school.jpg" alt=""></div>
+        <div class="body">
+          <span class="rub">Общество</span>
+          <h3>14 студентов учреждений СПО из Удмуртии участвуют в финале «Большой перемены»</h3>
+          <div class="meta"><span>21 ноября, 10:20</span><span class="eye">864</span></div>
+        </div>
+      </a>
+
+      <a class="ncard" href="#">
+        <div class="ph v2"><img src="assets/photos/card-speaker.jpg" alt=""></div>
+        <div class="body">
+          <span class="rub">Общество</span>
+          <h3>Жителей Удмуртии приглашают на конкурс-премию «Безграничные возможности»</h3>
+          <div class="meta"><span>20 ноября, 18:00</span><span class="eye">1 204</span></div>
+        </div>
+      </a>
+
+      <a class="ncard" href="#">
+        <div class="ph v3"><img src="assets/photos/card-expo.jpg" alt=""></div>
+        <div class="body">
+          <span class="rub">Культура</span>
+          <h3>В Удмуртии открываются фотовыставки проекта «Счастливые семьи Удмуртии»</h3>
+          <div class="meta"><span>20 ноября, 16:30</span><span class="eye">742</span></div>
+        </div>
+      </a>
+
+      <a class="ncard" href="#">
+        <div class="ph v3"><img src="assets/photos/hero-theatre.jpg" alt=""></div>
+        <div class="body">
+          <span class="rub">Культура</span>
+          <h3>Студенческий форум «Дождались» в 26-й раз собрал творческую молодёжь Удмуртии</h3>
+          <div class="meta"><span>20 ноября, 14:10</span><span class="eye">531</span></div>
+        </div>
+      </a>
+
+      <a class="ncard" href="#">
+        <div class="ph"><img src="assets/photos/card-actor.jpg" alt=""></div>
+        <div class="body">
+          <span class="rub">Культура</span>
+          <h3>Продолжается приём заявок на VIII сезон фестиваля «Театральное Приволжье»</h3>
+          <div class="meta"><span>20 ноября, 12:45</span><span class="eye">1 877</span></div>
+        </div>
+      </a>
+
+      <a class="ncard" href="#">
+        <div class="ph v2"><img src="assets/photos/card-operator.jpg" alt=""></div>
+        <div class="body">
+          <span class="rub">Общество</span>
+          <h3>Жители Удмуртии задали более 2 000 вопросов на прямой линии</h3>
+          <div class="meta"><span>17 ноября, 12:45</span><span class="eye">986</span></div>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- рубрика дня -->
+  <section class="wrap">
+    <div class="sec-head">
+      <div>
+        <h2>Общество</h2>
+        <div class="sub">Что обсуждают в городе на этой неделе</div>
+      </div>
+      <a class="more" href="#">Вся рубрика →</a>
+    </div>
+    <div class="day">
+      <a class="bigcard" href="#">
+        <img class="big-img" src="assets/photos/card-school.jpg" alt="Публичные слушания по бюджету">
+        <span class="tag">Разбор</span>
+        <h3>Куда пойдут деньги города в следующем году</h3>
+        <p>Пять главных статей бюджета: дороги, школы, ЖКХ, медицина и благоустройство. Считаем, что изменится для каждого жителя.</p>
+        <span class="go">Читать разбор →</span>
+      </a>
+
+      <div class="read">
+        <div class="sec-head" style="margin-bottom:14px">
+          <h2 style="font-size:19px">Читают сейчас</h2>
+        </div>
+        <ol>
+          <li><a href="#"><b>Почему в ноябре не работает уличное освещение<span class="meta">1 877 просмотров</span></b></a></li>
+          <li><a href="#"><b>Как записаться к врачу через Госуслуги<span class="meta">1 402 просмотра</span></b></a></li>
+          <li><a href="#"><b>Где в городе принимают старые батарейки<span class="meta">986 просмотров</span></b></a></li>
+          <li><a href="#"><b>Что изменится в расписании автобусов с декабря<span class="meta">914 просмотров</span></b></a></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- свежий номер -->
+  <section class="wrap">
+    <div class="issue">
+      <div class="issue-cover">
+        <div class="cover">
+          <img src="assets/issue-44-p1.jpg" width="900" height="1300"
+            alt="Первая полоса газеты «Красное Прикамье» № 44 от 12 ноября 2026 года: Антон Двинянинов с собакой, заголовок «Встать пораньше, чтобы погулять подольше»">
+        </div>
+        <a class="btn issue-read" href="#">Читать номер <span>· PDF 12,8 МБ</span></a>
+      </div>
+
+      <div class="issue-right">
+        <h3>Свежий номер</h3>
+        <div class="date">№ 44 (23 496) от 12 ноября 2026 · 24 страницы · тираж 3 400 экз. · 16+</div>
+        <ul class="issue-list">
+          <li>
+            <span class="rub">Местное время · стр. 2</span>
+            <b>К юбилею археолога</b>
+            <div class="lead-sm">10 ноября исполнилось 85 лет Римме Голдиной — основателю и руководителю Камско-Вятской археологической экспедиции.</div>
+          </li>
+          <li>
+            <span class="rub">Местное время · стр. 3</span>
+            <b>Прямая линия с врио Главы республики</b>
+            <div class="lead-sm">Ольга Абрамова ответит на вопросы жителей 23 ноября, трансляция — в 18.30.</div>
+          </li>
+          <li>
+            <span class="rub">Культура · стр. 4</span>
+            <b>Богат талантами Сарапул</b>
+            <div class="lead-sm">Пятый конкурс детской иллюстрации «Рисуем сказку» собрал больше 140 работ, 24 отмечены дипломами.</div>
+          </li>
+          <li>
+            <span class="rub">Наши защитники · стр. 6</span>
+            <b>«Ближе тебя никого нет»</b>
+            <div class="lead-sm">Валя младше брата почти на два года, и он всегда заступался за неё в школе и во дворе.</div>
+          </li>
+        </ul>
+      </div>
+
+      <aside class="person">
+        <div class="person-ph">
+          <img src="assets/person-hero.jpg" width="700" height="630" alt="Антон Двинянинов с собаками">
+        </div>
+        <div class="person-label">Персона недели</div>
+        <div class="person-name">Антон Двинянинов</div>
+        <div class="person-role">Волонтёр, Сарапул</div>
+        <p>Более пяти лет назад предпочёл бизнесу волонтёрство и погрузился в тему ответственного содержания домашних животных.</p>
+        <a href="#">Читать интервью · стр. 11</a>
+      </aside>
+    </div>
+  </section>
+
+  <!-- справочник -->
+  <section class="wrap">
+    <div class="sec-head">
+      <div>
+        <h2>Справочник города</h2>
+        <div class="sub">Проверено редакцией 19 ноября</div>
+      </div>
+      <a class="more" href="#">Все сервисы →</a>
+    </div>
+    <div class="quick">
+      <a class="qrow" href="#">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg>
+        <span class="txt"><b>Аварийные службы</b><small>112, газ, ЖКХ, свет</small></span>
+        <svg class="arw" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="m9 18 6-6-6-6"/></svg>
+      </a>
+      <a class="qrow" href="#">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+        <span class="txt"><b>Аптеки</b><small>круглосуточные, адреса</small></span>
+        <svg class="arw" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="m9 18 6-6-6-6"/></svg>
+      </a>
+      <a class="qrow" href="#">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M9 8h.01M15 8h.01M9 12h.01M15 12h.01M10 21v-4h4v4"/></svg>
+        <span class="txt"><b>МФЦ</b><small>адреса и режим работы</small></span>
+        <svg class="arw" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="m9 18 6-6-6-6"/></svg>
+      </a>
+      <a class="qrow" href="#">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v9H4z"/><path d="M4 15h16M7 18h.01M17 18h.01"/></svg>
+        <span class="txt"><b>Транспорт</b><small>автобусы и электрички</small></span>
+        <svg class="arw" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="m9 18 6-6-6-6"/></svg>
+      </a>
+      <a class="qrow" href="#">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span class="txt"><b>Город на карте</b><small>улицы, дороги, объекты</small></span>
+        <svg class="arw" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="m9 18 6-6-6-6"/></svg>
+      </a>
+      <a class="qrow" href="#">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        <span class="txt"><b>Написать в редакцию</b><small>новость, фото, вопрос</small></span>
+        <svg class="arw" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="m9 18 6-6-6-6"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- афиша и опрос -->
+  <section class="wrap">
+    <div class="two">
+      <div>
+        <div class="sec-head">
+          <h2>Афиша недели</h2>
+          <a class="more" href="#">Все события →</a>
+        </div>
+        <div class="events">
+          <a class="ev" href="#">
+            <div class="ph"><img src="assets/photos/card-expo.jpg" alt=""></div>
+            <div class="body">
+              <div class="when">23 ноября, 12:00</div>
+              <h3>Ярмарка местных производителей</h3>
+              <div class="place">Площадь у ДК · вход свободный</div>
+            </div>
+          </a>
+          <a class="ev" href="#">
+            <div class="ph"><img src="assets/photos/card-actor.jpg" alt=""></div>
+            <div class="body">
+              <div class="when">24 ноября, 18:30</div>
+              <h3>Концерт краевого оркестра</h3>
+              <div class="place">Дом культуры · 400–800 ₽</div>
+            </div>
+          </a>
+          <a class="ev" href="#">
+            <div class="ph"><img src="assets/photos/card-expo.jpg" alt=""></div>
+            <div class="body">
+              <div class="when">26 ноября, 11:00</div>
+              <h3>Экскурсия по купеческим дачам</h3>
+              <div class="place">Сбор у музея · 250 ₽</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="poll">
+        <span class="rub">Опрос недели</span>
+        <div class="q">Что нужно городу в первую очередь?</div>
+        <div class="opt">
+          <div class="row"><span>Ремонт дорог</span><span>46%</span></div>
+          <div class="bar"><i style="width:46%"></i></div>
+        </div>
+        <div class="opt">
+          <div class="row"><span>Новая школа</span><span>28%</span></div>
+          <div class="bar"><i style="width:28%"></i></div>
+        </div>
+        <div class="opt">
+          <div class="row"><span>Благоустройство</span><span>18%</span></div>
+          <div class="bar"><i style="width:18%"></i></div>
+        </div>
+        <div class="opt">
+          <div class="row"><span>Освещение улиц</span><span>8%</span></div>
+          <div class="bar"><i style="width:8%"></i></div>
+        </div>
+        <div class="note">Проголосовали 312 человек</div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer id="site-footer">
+  <div class="wrap">
+    <div class="fgrid">
+      <div class="fbrand">
+        <div class="logo"><img src="assets/logo-full-transparent.png" alt="Красное Прикамье" width="129" height="64"></div>
+        <p>Газета города Сарапула и Сарапульского района.</p>
+        <div class="socials">
+          <a href="#" aria-label="ВКонтакте">VK</a>
+          <a href="#" aria-label="Одноклассники">ОК</a>
+          <a href="#" aria-label="Telegram">TG</a>
+          <a href="#" aria-label="Дзен">ДЗ</a>
+        </div>
+      </div>
+
+      <div>
+        <h4>Разделы</h4>
+        <ul>
+          <li><a href="#">Культура</a></li>
+          <li><a href="#">Образование</a></li>
+          <li><a href="#">Общество</a></li>
+          <li><a href="#">Бизнес</a></li>
+          <li><a href="#">Персона</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Газета</h4>
+        <ul>
+          <li><a href="#">Свежий номер</a></li>
+          <li><a href="#">Архив номеров</a></li>
+          <li><a href="#">Подписка</a></li>
+          <li><a href="#">Реклама</a></li>
+          <li><a href="#">Контакты редакции</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Обязательно к прочтению</h4>
+        <ul>
+          <li><a href="#">Правовая информация</a></li>
+          <li><a href="#">Информация о СМИ</a></li>
+          <li><a href="#">Политика конфиденциальности</a></li>
+          <li><a href="#">Рекомендательные алгоритмы</a></li>
+          <li><a href="#">Правила комментариев</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="legal">
+      <span>© 2026 «Красное Прикамье»</span>
+      <span>Свидетельство СМИ ЭЛ № ФС 00-00000</span>
+      <span>Учредитель: редакция газеты</span>
+      <span class="age">16+</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
