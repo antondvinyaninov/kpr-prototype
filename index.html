@@ -273,8 +273,15 @@
     .person{grid-column:1/-1}
   }
   @media(max-width:900px){
-    .issue{grid-template-columns:1fr}
+    .issue{grid-template-columns:1fr;padding:18px;gap:20px}
     .person{grid-column:auto}
+    .issue-cover{max-width:320px;margin:0 auto;width:100%}
+    .cover{max-width:none;width:100%}
+    .person{max-width:320px;margin:0 auto;width:100%}
+    .issue-right .date{margin-bottom:12px;font-size:12px;line-height:1.5}
+    .issue-right h3{font-size:20px}
+    .issue-list li{height:auto;overflow:visible}
+    .issue-list b,.issue-list .lead-sm{display:block;-webkit-line-clamp:none;min-height:0;overflow:visible}
   }
   .cover{
     aspect-ratio:900/1300;border-radius:4px;background:#fff;overflow:hidden;
@@ -390,7 +397,7 @@
 </style>
 <link rel="stylesheet" href="assets/a11y.css?v=3">
 <link rel="stylesheet" href="assets/megamenu.css?v=9">
-<link rel="stylesheet" href="assets/footer.css?v=1">
+<link rel="stylesheet" href="assets/footer.css?v=3">
 <link rel="stylesheet" href="assets/logo-effects.css?v=6">
 <link rel="stylesheet" href="assets/mobile-menu.css?v=3">
 </head>
