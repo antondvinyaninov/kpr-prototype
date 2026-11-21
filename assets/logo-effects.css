@@ -19,16 +19,14 @@
   background:#2a1b46;border-right:1px solid rgba(120,205,255,.45);border-bottom:1px solid rgba(120,205,255,.45)
 }
 
-.logo-mark:hover .logo-cyber,
-.logo-mark:focus-within .logo-cyber{
+.logo-mark.is-cyber .logo-cyber{
   opacity:1;transform:translateX(-50%) translateY(0) scale(1)
 }
 
-.logo-mark:hover .red,
-.logo-mark:focus-within .red{animation:cyber-glitch .55s steps(2,end) 1}
+.logo-mark.is-cyber .red{animation:cyber-glitch .55s steps(2,end) 1}
+.logo-mark.is-cyber .fish{animation:cyber-fish .55s ease 1}
 
-.logo-mark:hover .fish,
-.logo-mark:focus-within .fish{animation:cyber-fish .55s ease 1}
+.logo .fish{cursor:pointer}
 
 @keyframes cyber-glitch{
   0%{text-shadow:none;transform:none}
@@ -44,6 +42,5 @@
 }
 
 @media(prefers-reduced-motion:reduce){
-  .logo-mark:hover .red,.logo-mark:focus-within .red,
-  .logo-mark:hover .fish,.logo-mark:focus-within .fish{animation:none}
+  .logo-mark.is-cyber .red,.logo-mark.is-cyber .fish{animation:none}
 }
