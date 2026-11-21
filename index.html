@@ -371,7 +371,10 @@
   .poll-report:hover{color:var(--accent)}
 
   /* подвал */
-  footer{margin-top:26px;background:var(--bg);border-top:1px solid var(--line);padding:38px 0 30px}
+  footer{margin-top:26px;background:var(--bg);padding:0 0 26px}
+  .fcard{background:#fff;border:1px solid var(--edge);border-radius:28px;padding:34px 34px 30px;
+    box-shadow:0 10px 30px rgba(20,25,40,.05)}
+  @media(max-width:640px){.fcard{padding:22px 20px;border-radius:20px}}
   .fgrid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:28px}
   @media(max-width:900px){.fgrid{grid-template-columns:1fr 1fr}}
   @media(max-width:560px){.fgrid{grid-template-columns:1fr}}
@@ -384,7 +387,7 @@
   .socials a{width:36px;height:36px;border-radius:50%;border:1px solid var(--line);
     display:grid;place-items:center;font-size:11px;color:var(--muted);font-weight:600}
   .socials a:hover{border-color:var(--accent);color:var(--accent)}
-  .legal{margin-top:30px;padding-top:18px;border-top:1px solid var(--line);
+  .legal{margin-top:22px;padding:0 6px;
     display:flex;flex-wrap:wrap;gap:8px 22px;font-size:12px;color:var(--muted-2)}
   .legal .age{margin-left:auto;border:1px solid var(--line);border-radius:6px;padding:2px 8px;color:var(--muted)}
 
@@ -973,6 +976,7 @@
 
 <footer id="site-footer">
   <div class="wrap">
+    <div class="fcard">
     <div class="fgrid">
       <div class="fbrand">
         <div class="logo"><img src="assets/logo-full-transparent.png" alt="Красное Прикамье" width="129" height="64"></div>
@@ -1017,6 +1021,7 @@
           <li><a href="#">Правила комментариев</a></li>
         </ul>
       </div>
+    </div>
     </div>
 
     <div class="legal">
