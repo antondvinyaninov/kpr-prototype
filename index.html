@@ -323,13 +323,17 @@
   @media(max-width:1024px){.two{grid-template-columns:1fr}}
   .events{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
   @media(max-width:720px){.events{grid-template-columns:1fr}}
-  .ev{background:var(--surface);border:1px solid var(--edge);border-radius:var(--r);overflow:hidden;transition:box-shadow .18s}
-  .ev:hover{box-shadow:0 10px 26px rgba(20,25,40,.09)}
-  .ev .ph{aspect-ratio:16/10;background:linear-gradient(135deg,#b7a79a,#e0d3c6)}
-  .ev .ph.v2{background:linear-gradient(135deg,#9aa8b8,#d3dde7)}
-  .ev .ph.v3{background:linear-gradient(135deg,#a8b39a,#dde5d2)}
-  .ev .body{padding:14px 16px 16px}
-  .ev .when{font-size:12px;color:var(--accent);font-weight:600;letter-spacing:.02em}
+  .ev{position:relative;aspect-ratio:3/4;background:#e9e6df;border:1px solid var(--edge);
+    border-radius:var(--r);overflow:hidden;transition:box-shadow .18s,transform .18s}
+  .ev:hover{box-shadow:0 12px 30px rgba(20,25,40,.12);transform:translateY(-2px)}
+  .ev img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+  .ev::after{content:"";position:absolute;inset:0;
+    background:linear-gradient(to top,rgba(12,16,24,.92) 0%,rgba(12,16,24,.55) 42%,rgba(12,16,24,.05) 78%)}
+  .ev-body{position:absolute;left:0;right:0;bottom:0;z-index:2;display:flex;flex-direction:column;gap:6px;padding:18px}
+  .ev-when{font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:#ffd9d6}
+  .ev-title{font-size:19px;line-height:1.22;letter-spacing:-.02em;font-weight:600;color:#fff}
+  .ev-place{font-size:12.5px;color:rgba(255,255,255,.78)}
+  .ev:hover .ev-title{text-decoration:underline}
   .ev h3{margin:6px 0 6px;font-size:16px;line-height:1.3;letter-spacing:-.01em;font-weight:500}
   .ev .place{font-size:12.5px;color:var(--muted-2)}
 
@@ -372,8 +376,8 @@
   .bigcard{position:relative}
   .bigcard>.big-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
   .bigcard>:not(.big-img){position:relative;z-index:2}
-  .ncard .ph,.ev .ph{position:relative;overflow:hidden}
-  .ncard .ph img,.ev .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+  .ncard .ph{position:relative;overflow:hidden}
+  .ncard .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 </style>
 <link rel="stylesheet" href="assets/a11y.css">
 <link rel="stylesheet" href="assets/megamenu.css">
@@ -831,28 +835,28 @@
         </div>
         <div class="events">
           <a class="ev" href="#">
-            <div class="ph"><img src="assets/photos/card-expo.jpg" alt=""></div>
-            <div class="body">
-              <div class="when">23 ноября, 12:00</div>
-              <h3>Ярмарка местных производителей</h3>
-              <div class="place">Площадь у ДК · вход свободный</div>
-            </div>
+            <img src="assets/photos/card-expo.jpg" alt="">
+            <span class="ev-body">
+              <span class="ev-when">23 ноября, 12:00</span>
+              <span class="ev-title">Ярмарка местных производителей</span>
+              <span class="ev-place">Площадь у ДК · вход свободный</span>
+            </span>
           </a>
           <a class="ev" href="#">
-            <div class="ph"><img src="assets/photos/card-actor.jpg" alt=""></div>
-            <div class="body">
-              <div class="when">24 ноября, 18:30</div>
-              <h3>Концерт краевого оркестра</h3>
-              <div class="place">Дом культуры · 400–800 ₽</div>
-            </div>
+            <img src="assets/photos/card-actor.jpg" alt="">
+            <span class="ev-body">
+              <span class="ev-when">24 ноября, 18:30</span>
+              <span class="ev-title">Концерт краевого оркестра</span>
+              <span class="ev-place">Дом культуры · 400–800 ₽</span>
+            </span>
           </a>
           <a class="ev" href="#">
-            <div class="ph"><img src="assets/photos/card-expo.jpg" alt=""></div>
-            <div class="body">
-              <div class="when">26 ноября, 11:00</div>
-              <h3>Экскурсия по купеческим дачам</h3>
-              <div class="place">Сбор у музея · 250 ₽</div>
-            </div>
+            <img src="assets/photos/hero-theatre.jpg" alt="">
+            <span class="ev-body">
+              <span class="ev-when">26 ноября, 11:00</span>
+              <span class="ev-title">Экскурсия по купеческим дачам</span>
+              <span class="ev-place">Сбор у музея · 250 ₽</span>
+            </span>
           </a>
         </div>
       </div>
