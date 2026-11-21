@@ -9,14 +9,14 @@
 .mega-trigger[aria-expanded="true"]{color:var(--accent)}
 
 .mega-panel{
-  position:fixed;top:98px;left:50%;transform:translateX(-50%) translateY(-4px);z-index:65;
-  width:min(620px,calc(100vw - 32px));
-  display:grid;grid-template-columns:1.36fr .64fr 176px;
+  position:fixed;top:98px;left:0;right:0;margin-inline:auto;transform:translateY(-4px);z-index:65;
+  width:max-content;max-width:calc(100vw - 32px);
+  display:grid;grid-template-columns:max-content max-content 176px;
   background:#fff;border:1px solid var(--edge);border-radius:18px;overflow:hidden;
   box-shadow:0 22px 54px rgba(20,25,40,.16);
   opacity:0;transition:opacity .14s ease,transform .14s ease
 }
-.mega-panel:not([hidden]){opacity:1;transform:translateX(-50%) translateY(0)}
+.mega-panel:not([hidden]){opacity:1;transform:translateY(0)}
 .mega-panel[hidden]{display:none}
 
 .mega-col{padding:12px 11px}
