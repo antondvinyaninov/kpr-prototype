@@ -160,35 +160,40 @@
   .chip{padding:9px 16px;border-radius:999px;border:1px solid var(--edge);background:#fff;font-size:14px;color:#333c4d}
   .chip[aria-current]{background:var(--accent);border-color:var(--accent);color:#fff}
   .chip:hover:not([aria-current]){border-color:var(--accent);color:var(--accent)}
-  /* лид-карточка */
-  .lead-card{position:relative;display:block;aspect-ratio:16/8.4;border-radius:28px;overflow:hidden;margin-bottom:22px;background:#0d1219}
-  .lead-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
-  .lead-card::after{content:"";position:absolute;inset:0;
-    background:linear-gradient(to top,rgba(10,14,20,.92) 0%,rgba(10,14,20,.45) 46%,rgba(10,14,20,.06) 76%)}
-  .lead-body{position:absolute;left:0;right:0;bottom:0;z-index:2;display:flex;flex-direction:column;gap:8px;padding:30px 32px}
-  .lead-body .headline{font-size:34px;line-height:1.16;letter-spacing:-.025em;font-weight:600;color:#fff;max-width:22ch}
-  .kicker{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#ffd9d6}
-  .lead-card:hover .headline{text-decoration:underline}
-  @media(max-width:760px){
-    .lead-card{aspect-ratio:4/3;border-radius:20px}
-    .lead-body{padding:18px}
-    .lead-body .headline{font-size:21px;max-width:none}
-  }
-
-  /* лента */
-  .feed{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-bottom:26px}
-  @media(max-width:980px){.feed{grid-template-columns:1fr 1fr}}
-  @media(max-width:640px){.feed{grid-template-columns:1fr}}
-  .ncard{position:relative;display:block;aspect-ratio:4/3.35;border-radius:24px;overflow:hidden;background:#0d1219;
+  /* журнальная сетка: 2 → 3 → 2 (7+5) → 2 */
+  .feed{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:18px;margin-bottom:26px}
+  .ncard{position:relative;display:block;border-radius:20px;overflow:hidden;background:#0d1219;
     transition:box-shadow .18s,transform .18s}
   .ncard:hover{box-shadow:0 14px 34px rgba(20,25,40,.16);transform:translateY(-2px)}
   .ncard img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
   .ncard::after{content:"";position:absolute;inset:0;
-    background:linear-gradient(to top,rgba(10,14,20,.94) 0%,rgba(10,14,20,.55) 44%,rgba(10,14,20,.05) 78%)}
+    background:linear-gradient(to top,rgba(10,14,20,.96) 0%,rgba(10,14,20,.66) 45%,rgba(10,14,20,.08) 80%)}
   .nbody{position:absolute;left:0;right:0;bottom:0;z-index:2;display:flex;flex-direction:column;gap:6px;padding:18px 20px}
   .nbody .headline{font-size:19px;line-height:1.24;letter-spacing:-.02em;font-weight:600;color:#fff}
   .ncard:hover .headline{text-decoration:underline}
   .nbody .when{font-size:12.5px;color:rgba(255,255,255,.72);margin-top:2px}
+  .kicker{font-size:11.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#ffd9d6}
+
+  .c6{grid-column:span 6;aspect-ratio:16/9}
+  .c4{grid-column:span 4;aspect-ratio:3/3.6}
+  .c7{grid-column:span 7;aspect-ratio:16/10}
+  .c5{grid-column:span 5;aspect-ratio:16/10}
+  .c6.big .headline{font-size:23px;max-width:26ch}
+  .c7 .headline{font-size:22px}
+
+  @media(max-width:980px){
+    .c6,.c4,.c7,.c5{grid-column:span 12}
+    .c6,.c7,.c5{aspect-ratio:16/9}
+    .c4{aspect-ratio:16/10}
+    .c6.big .headline,.c7 .headline{font-size:20px}
+  }
+  @media(max-width:640px){
+    .feed{gap:14px}
+    .ncard{aspect-ratio:4/3.2 !important;border-radius:16px}
+    .nbody{padding:16px}
+    .nbody .headline{font-size:18px}
+  }
+
   .more-wrap{display:flex;justify-content:center;margin:0 0 26px}
   .more-btn{height:46px;padding:0 28px;border-radius:999px;border:1px solid var(--edge);background:#fff;
     font:inherit;font-size:15px;font-weight:500;cursor:pointer;color:var(--ink)}
@@ -381,32 +386,16 @@
     <a class="chip" href="#">Бизнес</a>
   </div>
 
-  <a class="lead-card" href="#">
-    <img src="assets/photos/hero-theatre.jpg" alt="">
-    <span class="lead-body">
-      <span class="kicker">Культура · 2 часа назад</span>
-      <span class="headline">В Удмуртии продлён приём заявок на фестиваль «Театральное Приволжье»</span>
-    </span>
-  </a>
-
   <div class="feed">
-    <a class="ncard" href="#">
-      <img src="assets/photos/card-school.jpg" alt="">
-      <span class="nbody">
-        <span class="kicker">Образование</span>
-        <span class="headline">Школьники города победили на краевой олимпиаде по информатике</span>
-        <span class="when">5 часов назад</span>
-      </span>
-    </a>
-    <a class="ncard" href="#">
-      <img src="assets/photos/card-expo.jpg" alt="">
+    <a class="ncard c6 big" href="#">
+      <img src="assets/photos/hero-theatre.jpg" alt="">
       <span class="nbody">
         <span class="kicker">Культура</span>
-        <span class="headline">Музей-заповедник показал архивные фотографии города 1960-х</span>
-        <span class="when">вчера</span>
+        <span class="headline">В Удмуртии продлён приём заявок на фестиваль «Театральное Приволжье»</span>
+        <span class="when">2 часа назад</span>
       </span>
     </a>
-    <a class="ncard" href="#">
+    <a class="ncard c6 big" href="#">
       <img src="assets/photos/card-operator.jpg" alt="">
       <span class="nbody">
         <span class="kicker">Общество</span>
@@ -414,7 +403,23 @@
         <span class="when">вчера</span>
       </span>
     </a>
-    <a class="ncard" href="#">
+    <a class="ncard c4" href="#">
+      <img src="assets/photos/card-school.jpg" alt="">
+      <span class="nbody">
+        <span class="kicker">Образование</span>
+        <span class="headline">Школьники города победили на краевой олимпиаде по информатике</span>
+        <span class="when">вчера</span>
+      </span>
+    </a>
+    <a class="ncard c4" href="#">
+      <img src="assets/photos/card-expo.jpg" alt="">
+      <span class="nbody">
+        <span class="kicker">Культура</span>
+        <span class="headline">Музей-заповедник показал архивные фотографии города 1960-х</span>
+        <span class="when">2 дня назад</span>
+      </span>
+    </a>
+    <a class="ncard c4" href="#">
       <img src="assets/photos/card-speaker.jpg" alt="">
       <span class="nbody">
         <span class="kicker">Общество</span>
@@ -422,23 +427,15 @@
         <span class="when">2 дня назад</span>
       </span>
     </a>
-    <a class="ncard" href="#">
+    <a class="ncard c7" href="#">
       <img src="assets/photos/card-actor.jpg" alt="">
       <span class="nbody">
         <span class="kicker">Культура</span>
         <span class="headline">Концерт краевого оркестра пройдёт в Доме культуры 24 ноября</span>
-        <span class="when">2 дня назад</span>
-      </span>
-    </a>
-    <a class="ncard" href="#">
-      <img src="assets/photos/card-students.jpg" alt="">
-      <span class="nbody">
-        <span class="kicker">Образование</span>
-        <span class="headline">Студенты медколледжа сдали кровь для городской больницы</span>
         <span class="when">3 дня назад</span>
       </span>
     </a>
-    <a class="ncard" href="#">
+    <a class="ncard c5" href="#">
       <img src="assets/person-hero.jpg" alt="">
       <span class="nbody">
         <span class="kicker">Общество</span>
@@ -446,7 +443,15 @@
         <span class="when">3 дня назад</span>
       </span>
     </a>
-    <a class="ncard" href="#">
+    <a class="ncard c6" href="#">
+      <img src="assets/photos/card-students.jpg" alt="">
+      <span class="nbody">
+        <span class="kicker">Образование</span>
+        <span class="headline">Студенты медколледжа сдали кровь для городской больницы</span>
+        <span class="when">4 дня назад</span>
+      </span>
+    </a>
+    <a class="ncard c6" href="#">
       <img src="assets/photos/card-expo.jpg" alt="">
       <span class="nbody">
         <span class="kicker">Культура</span>
