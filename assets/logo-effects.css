@@ -9,7 +9,7 @@
   background-size:220% 100%;
   -webkit-background-clip:text;background-clip:text;color:transparent;
   filter:drop-shadow(0 0 7px rgba(53,231,255,.45));
-  animation:cyber-glitch .55s steps(2,end) 1,cyber-shimmer 3.2s linear infinite .55s
+  animation:cyber-glitch .95s steps(2,end) 1,cyber-shimmer 4.5s linear infinite .95s
 }
 .logo-mark.is-cyber .fish{display:none}
 

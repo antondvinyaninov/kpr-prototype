@@ -6,18 +6,11 @@
   if (!fish || parts.length < 2) return;
 
   var kra = parts[0], noe = parts[1];
-  var clicks = 0, resetTimer = null, hideTimer = null, active = false;
+  var clicks = 0, resetTimer = null, active = false;
 
   function reset() {
     clicks = 0;
     if (resetTimer) { clearTimeout(resetTimer); resetTimer = null; }
-  }
-
-  function restore() {
-    kra.textContent = 'КРА';
-    noe.style.display = '';
-    mark.classList.remove('is-cyber');
-    active = false;
   }
 
   fish.addEventListener('click', function (e) {
@@ -35,8 +28,6 @@
       kra.textContent = 'КИБЕР';
       noe.style.display = 'none';
       mark.classList.add('is-cyber');
-      if (hideTimer) clearTimeout(hideTimer);
-      hideTimer = setTimeout(restore, 6000);
     }
   });
 })();
